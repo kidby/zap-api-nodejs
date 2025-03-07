@@ -16,10 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * Class for managing authentication-related API requests for ZAP Proxy.
- * @param {object} clientApi - The client API object for making requests.
- */
+
+'use strict';
+
 class Authentication {
   constructor(clientApi) {
     this.api = clientApi;
@@ -68,20 +67,13 @@ class Authentication {
    * Sets the authentication method for the context.
    * @param {{
    *   contextId: string,
-   *   authmethodname: string,
-   *   authmethodconfigparams?: string
+   *   authMethodName: string,
+   *   authMethodConfigParams?: string
    * }} args - Object containing contextId, authentication method name, and optional configuration parameters.
    * @returns {Promise}
    */
-  setAuthenticationMethod = (args) => {
-    const params = {
-      contextId: args.contextId,
-      authMethodName: args.authmethodname,
-    };
-    if (args.authmethodconfigparams) {
-      params.authMethodConfigParams = args.authmethodconfigparams;
-    }
-    return this.api.request('/authentication/action/setAuthenticationMethod', params);
+  setAuthenticationMethod = ({ contextId, authMethodName, authMethodConfigParams }) => {
+    return this.api.request('/authentication/action/setAuthenticationMethod', { contextId, authMethodName, authMethodConfigParams });
   };
 
   /**
@@ -92,10 +84,7 @@ class Authentication {
    * }} args - Object containing the context ID and logged in indicator regex.
    * @returns {Promise}
    */
-  setLoggedInIndicator = ({
-                            contextId,
-                            loggedInIndicatorRegex,
-                          }) =>
+  setLoggedInIndicator = ({ contextId, loggedInIndicatorRegex }) =>
     this.api.request('/authentication/action/setLoggedInIndicator', {
       contextId,
       loggedInIndicatorRegex,
@@ -109,10 +98,7 @@ class Authentication {
    * }} args - Object containing the context ID and logged out indicator regex.
    * @returns {Promise}
    */
-  setLoggedOutIndicator = ({
-                             contextId,
-                             loggedOutIndicatorRegex,
-                           }) =>
+  setLoggedOutIndicator = ({ contextId, loggedOutIndicatorRegex }) =>
     this.api.request('/authentication/action/setLoggedOutIndicator', {
       contextId,
       loggedOutIndicatorRegex,

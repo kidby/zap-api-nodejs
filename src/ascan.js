@@ -280,13 +280,17 @@ class Ascan {
   optionShowAdvancedDialog = () =>
     this.api.request('/ascan/view/optionShowAdvancedDialog');
 
-  // ========================
-  // API Action Methods
-  // ========================
-
   /**
    * Starts an active scan.
-   * @param {{ url?: string, recurse?: string, inScopeOnly?: boolean, scanPolicyName?: string, method?: string, postdata?: string, contextId?: string }} [args={}]
+   * @param {{
+   *   url?: string,
+   *   recurse?: string,
+   *   inScopeOnly?: boolean,
+   *   scanPolicyName?: string,
+   *   method?: string,
+   *   postdata?: string,
+   *   contextId?: string,
+   * }} [args={}]
    * @returns {Promise}
    */
   scan = ({ url, recurse, inScopeOnly, scanPolicyName, method, postdata, contextId } = {}) =>

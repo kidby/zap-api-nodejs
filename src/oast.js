@@ -102,7 +102,11 @@ class Oast {
   /**
    * Sets the Interactsh options.
    * This component is optional and therefore the API will only work if it is installed.
-   * @param {{ server: string, pollinsecs: string, authtoken: string }} args - Object containing the server URL, polling frequency, and authentication token.
+   * @param {{
+   *   server: string,
+   *   pollinsecs: string,
+   *   authtoken: string,
+   * }} args - Object containing the server URL, polling frequency, and authentication token.
    * @returns {Promise<any>} A promise that resolves when the Interactsh options are set.
    */
   setInteractshOptions = ({ server, pollinsecs, authtoken }) =>

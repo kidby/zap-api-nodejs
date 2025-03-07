@@ -383,7 +383,12 @@ class Core {
 
   /**
    * Modifies an excluded domain for the proxy chain.
-   * @param {{ idx: string, value: string, isRegex: boolean, isEnabled: boolean }} param0 - Object containing the index, domain value, isRegex flag, and isEnabled flag.
+   * @param {{
+   *   idx: string,
+   *   value: string,
+   *   isRegex: boolean,
+   *   isEnabled: boolean,
+   * }} param0 - Object containing the index, domain value, isRegex flag, and isEnabled flag.
    * @returns {Promise<any>} A promise that resolves when the domain is modified.
    */
   modifyProxyChainExcludedDomain = ({ idx, value, isRegex, isEnabled }) =>

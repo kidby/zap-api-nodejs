@@ -19,6 +19,19 @@
 
 'use strict';
 
+/**
+ * @typedef {Object} ZapApiOptions
+ * @property {string} [apiKey] - The API key for authentication
+ * @property {string} [proxy] - The proxy URL to use for connections
+ */
+
+/**
+ * @typedef {Object} ApiResponse
+ * @property {Object} [data] - The response data
+ * @property {string} [message] - Response message
+ * @property {number} [code] - Response code
+ */
+
 const axios = require('axios');
 const AccessControl = require('./accessControl');
 const Acsrf = require('./acsrf');
@@ -64,14 +77,24 @@ const { AxiosError } = require("axios");
 const BASE_URL_JSON = 'http://zap/JSON';
 const BASE_URL_OTHER = 'http://zap/OTHER';
 
+/**
+ * Custom error class for API client errors.
+ * @augments {AxiosError}
+ */
 class ApiClientError extends AxiosError {
   /**
-   * @type {{ code: string; message: string; detail?: string }} response
-   * @param {AxiosError} err - The original error.
+   * @param {import('axios').AxiosError} err - The original error.
    */
   constructor(err) {
     super(err.message, { cause: err });
     this.name = 'ApiClientError';
+
+    /**
+     * @type {{
+     *   status: number|undefined,
+     *   data: any
+     * }}
+     */
     this.response = {
       status: err.response?.status,
       data: err.response?.data,
@@ -83,13 +106,18 @@ class ApiClientError extends AxiosError {
  * Class representing the ZAP client API.
  */
 class ClientApi {
-  #defaultAxiosConfig;
+  /**
+   * @type {import('axios').AxiosRequestConfig}
+   * @private
+   */
+  _defaultAxiosConfig;
 
   /**
-   * @param {{ apiKey: string; proxy: string; }} options - API connection options.
+   * Creates an instance of the ZAP client API.
+   * @param {ZapApiOptions} options - API connection options.
    */
   constructor(options) {
-    this.#defaultAxiosConfig = {
+    this._defaultAxiosConfig = {
       params: {},
       baseURL: BASE_URL_JSON,
       headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
@@ -141,31 +169,39 @@ class ClientApi {
    * Makes an API request to ZAP.
    *
    * @param {string} url - The endpoint URL.
-   * @param {object} [data] - The request data.
-   * @param {string} [format] - The response format.
-   * @param {string} [method='GET'] - The HTTP method.
-   * @returns {Promise<any>} A promise resolving with the response data.
+   * @param {Record<string, string|number|boolean>} [data] - The request data.
+   * @param {'other'|undefined} [format] - The response format.
+   * @param {'GET'|'POST'|'PUT'|'DELETE'} [method='GET'] - The HTTP method.
+   * @returns {Promise<ApiResponse>} A promise resolving with the response data.
    */
   request = async (url, data, format, method = 'GET') => {
     try {
-      let requestConfig = structuredClone(this.#defaultAxiosConfig);
+      let requestConfig = structuredClone(this._defaultAxiosConfig);
       requestConfig.method = method;
       requestConfig.url = url;
 
       if (data) {
+        // Filter out null/undefined values from data
+        const filteredData = {};
+        for (const [key, value] of Object.entries(data)) {
+          if (value != null) {
+            filteredData[key] = value;
+          }
+        }
+
         if (method === 'GET') {
-          requestConfig.params = data;
+          requestConfig.params = filteredData;
         } else {
           requestConfig.headers = {
             ...requestConfig.headers,
             'content-type': 'application/x-www-form-urlencoded',
           };
-          requestConfig.data = data;
+          requestConfig.data = filteredData;
         }
       }
 
       if (format === 'other') {
-        requestConfig = { ...requestConfig, baseURL: BASE_URL_OTHER };
+        requestConfig.baseURL = BASE_URL_OTHER;
       }
 
       const response = await axios.request(requestConfig);
@@ -179,9 +215,9 @@ class ClientApi {
    * Makes a request to the "other" endpoint.
    *
    * @param {string} url - The endpoint URL.
-   * @param {object} [data] - The request data.
-   * @param {string} [method='GET'] - The HTTP method.
-   * @returns {Promise<any>} A promise resolving with the response data.
+   * @param {Record<string, string|number|boolean>} [data] - The request data.
+   * @param {'GET'|'POST'|'PUT'|'DELETE'} [method='GET'] - The HTTP method.
+   * @returns {Promise<ApiResponse>} A promise resolving with the response data.
    */
   requestOther = async (url, data, method = 'GET') => {
     return this.request(url, data, 'other', method);

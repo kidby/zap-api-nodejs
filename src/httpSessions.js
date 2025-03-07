@@ -101,31 +101,40 @@ class HttpSessions {
 
   /**
    * Adds a session token to the given site.
-   * @param {{ site: string, sessiontoken: string }} args - Object containing the site and session token.
+   * @param {{ site: string, sessionToken: string }} args - Object containing the site and session token.
    * @returns {Promise<any>} A promise resolving when the session token is added.
    */
-  addSessionToken = ({ site, sessiontoken }) =>
-    this.api.request('/httpSessions/action/addSessionToken', { site, sessionToken: sessiontoken });
+  addSessionToken = ({ site, sessionToken }) =>
+    this.api.request('/httpSessions/action/addSessionToken', { site, sessionToken: sessionToken });
 
   /**
    * Removes the session token from the given site.
-   * @param {{ site: string, sessiontoken: string }} args - Object containing the site and session token.
+   * @param {{ site: string, sessionToken: string }} args - Object containing the site and session token.
    * @returns {Promise<any>} A promise resolving when the session token is removed.
    */
-  removeSessionToken = ({ site, sessiontoken }) =>
-    this.api.request('/httpSessions/action/removeSessionToken', { site, sessionToken: sessiontoken });
+  removeSessionToken = ({ site, sessionToken }) =>
+    this.api.request('/httpSessions/action/removeSessionToken', { site, sessionToken: sessionToken });
 
   /**
    * Sets the value of the session token for the given session and site.
-   * @param {{ site: string, session: string, sessiontoken: string, tokenvalue: string }} args - Object containing the site, session, session token, and token value.
+   * @param {{
+   *   site: string,
+   *   session: string,
+   *   sessionToken: string,
+   *   tokenValue: string,
+   * }} args - Object containing the site, session, session token, and token value.
    * @returns {Promise<any>} A promise resolving when the token value is set.
    */
-  setSessionTokenValue = ({ site, session, sessiontoken, tokenvalue }) =>
-    this.api.request('/httpSessions/action/setSessionTokenValue', { site, session, sessionToken: sessiontoken, tokenValue: tokenvalue });
+  setSessionTokenValue = ({ site, session, sessionToken, tokenValue }) =>
+    this.api.request('/httpSessions/action/setSessionTokenValue', { site, session, sessionToken, tokenValue });
 
   /**
    * Renames the session for the given site.
-   * @param {{ site: string, oldsessionname: string, newsessionname: string }} args - Object containing the site, old session name, and new session name.
+   * @param {{
+   *   site: string,
+   *   oldsessionname: string,
+   *   newsessionname: string,
+   * }} args - Object containing the site, old session name, and new session name.
    * @returns {Promise<any>} A promise resolving when the session is renamed.
    */
   renameSession = ({ site, oldsessionname, newsessionname }) =>
@@ -133,30 +142,28 @@ class HttpSessions {
 
   /**
    * Adds a default session token with the given name and optional enabled state.
-   * @param {{ sessiontoken: string, tokenenabled?: string }} args - Object containing the session token and optional enabled flag.
+   * @param {{ sessionToken: string, tokenEnabled?: string }} args - Object containing the session token and optional enabled flag.
    * @returns {Promise<any>} A promise resolving when the default session token is added.
    */
-  addDefaultSessionToken = ({ sessiontoken, tokenenabled }) => {
-    const params = { sessionToken: sessiontoken };
-    if (tokenenabled) params.tokenEnabled = tokenenabled;
-    return this.api.request('/httpSessions/action/addDefaultSessionToken', params);
+  addDefaultSessionToken = ({ sessionToken, tokenEnabled }) => {
+    return this.api.request('/httpSessions/action/addDefaultSessionToken', { sessionToken, tokenEnabled });
   };
 
   /**
    * Sets whether the default session token is enabled.
-   * @param {{ sessiontoken: string, tokenenabled: string }} args - Object containing the session token and enabled flag.
+   * @param {{ sessionToken: string, tokenEnabled: string }} args - Object containing the session token and enabled flag.
    * @returns {Promise<any>} A promise resolving when the default session token enabled state is updated.
    */
-  setDefaultSessionTokenEnabled = ({ sessiontoken, tokenenabled }) =>
-    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled', { sessionToken: sessiontoken, tokenEnabled: tokenenabled });
+  setDefaultSessionTokenEnabled = ({ sessionToken, tokenEnabled }) =>
+    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled', { sessionToken, tokenEnabled });
 
   /**
    * Removes the default session token with the given name.
-   * @param {{ sessiontoken: string }} args - Object containing the session token.
+   * @param {{ sessionToken: string }} args - Object containing the session token.
    * @returns {Promise<any>} A promise resolving when the default session token is removed.
    */
-  removeDefaultSessionToken = ({ sessiontoken }) =>
-    this.api.request('/httpSessions/action/removeDefaultSessionToken', { sessionToken: sessiontoken });
+  removeDefaultSessionToken = ({ sessionToken }) =>
+    this.api.request('/httpSessions/action/removeDefaultSessionToken', { sessionToken });
 }
 
 module.exports = HttpSessions;

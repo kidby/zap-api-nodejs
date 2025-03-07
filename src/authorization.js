@@ -51,7 +51,13 @@ class Authorization {
    * @returns {Promise} - A promise that resolves when the method is set.
    */
   setBasicAuthorizationDetectionMethod = ({ contextId, headerRegex, bodyRegex, statusCode, logicalOperator }) =>
-    this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod', { contextId, headerRegex, bodyRegex, statusCode, logicalOperator });
+    this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod', {
+      contextId,
+      headerRegex,
+      bodyRegex,
+      statusCode,
+      logicalOperator,
+    });
 }
 
 module.exports = Authorization;
