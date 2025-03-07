@@ -17,198 +17,200 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Selenium (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionBrowserExtensions = function () {
-  return this.api.request('/selenium/view/optionBrowserExtensions/')
-}
-
-/**
- * Returns the current path to Chrome binary
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionChromeBinaryPath = function () {
-  return this.api.request('/selenium/view/optionChromeBinaryPath/')
-}
-
-/**
- * Returns the current path to ChromeDriver
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionChromeDriverPath = function () {
-  return this.api.request('/selenium/view/optionChromeDriverPath/')
-}
-
-/**
- * Returns the current path to Firefox binary
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxBinaryPath = function () {
-  return this.api.request('/selenium/view/optionFirefoxBinaryPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxDefaultProfile = function () {
-  return this.api.request('/selenium/view/optionFirefoxDefaultProfile/')
-}
-
-/**
- * Returns the current path to Firefox driver (geckodriver)
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxDriverPath = function () {
-  return this.api.request('/selenium/view/optionFirefoxDriverPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionIeDriverPath = function () {
-  return this.api.request('/selenium/view/optionIeDriverPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionLastDirectory = function () {
-  return this.api.request('/selenium/view/optionLastDirectory/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionPhantomJsBinaryPath = function () {
-  return this.api.request('/selenium/view/optionPhantomJsBinaryPath/')
-}
-
-/**
- * Gets the browser arguments.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- **/
-Selenium.prototype.getBrowserArguments = function (args) {
-  return this.api.request('/selenium/view/getBrowserArguments/', { browser: args.browser })
-}
-
-/**
- * Sets the current path to Chrome binary
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionChromeBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionChromeBinaryPath/', { String: args.string })
-}
-
-/**
- * Sets the current path to ChromeDriver
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionChromeDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionChromeDriverPath/', { String: args.string })
-}
-
-/**
- * Sets the current path to Firefox binary
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionFirefoxBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionFirefoxDefaultProfile = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxDefaultProfile/', { String: args.string })
-}
-
-/**
- * Sets the current path to Firefox driver (geckodriver)
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionFirefoxDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxDriverPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionIeDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionIeDriverPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionLastDirectory = function (args) {
-  return this.api.request('/selenium/action/setOptionLastDirectory/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', { String: args.string })
-}
-
-/**
- * Adds a browser argument.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Selenium.prototype.addBrowserArgument = function (args) {
-  const params = { browser: args.browser, argument: args.argument }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
+class Selenium {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/selenium/action/addBrowserArgument/', params)
+
+  /**
+   * Returns the browser extensions option.
+   * @returns {Promise<any>} A promise that resolves with the option.
+   */
+  optionBrowserExtensions = () =>
+    this.api.request('/selenium/view/optionBrowserExtensions');
+
+  /**
+   * Returns the current path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves with the Chrome binary path.
+   */
+  optionChromeBinaryPath = () =>
+    this.api.request('/selenium/view/optionChromeBinaryPath');
+
+  /**
+   * Returns the current path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves with the ChromeDriver path.
+   */
+  optionChromeDriverPath = () =>
+    this.api.request('/selenium/view/optionChromeDriverPath');
+
+  /**
+   * Returns the current path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves with the Firefox binary path.
+   */
+  optionFirefoxBinaryPath = () =>
+    this.api.request('/selenium/view/optionFirefoxBinaryPath');
+
+  /**
+   * Returns the current default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves with the default Firefox profile.
+   */
+  optionFirefoxDefaultProfile = () =>
+    this.api.request('/selenium/view/optionFirefoxDefaultProfile');
+
+  /**
+   * Returns the current path to the Firefox driver (geckodriver).
+   * @returns {Promise<any>} A promise that resolves with the Firefox driver path.
+   */
+  optionFirefoxDriverPath = () =>
+    this.api.request('/selenium/view/optionFirefoxDriverPath');
+
+  /**
+   * Returns the current path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves with the IEDriverServer path.
+   */
+  optionIeDriverPath = () =>
+    this.api.request('/selenium/view/optionIeDriverPath');
+
+  /**
+   * Returns the last used directory path.
+   * @returns {Promise<any>} A promise that resolves with the last used directory.
+   */
+  optionLastDirectory = () =>
+    this.api.request('/selenium/view/optionLastDirectory');
+
+  /**
+   * Returns the current path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves with the PhantomJS binary path.
+   */
+  optionPhantomJsBinaryPath = () =>
+    this.api.request('/selenium/view/optionPhantomJsBinaryPath');
+
+  /**
+   * Gets the browser arguments.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser name, e.g. "chrome" or "firefox".
+   * @returns {Promise<any>} A promise that resolves with the browser arguments.
+   */
+  getBrowserArguments = ({ browser }) =>
+    this.api.request('/selenium/view/getBrowserArguments', { browser });
+
+  /**
+   * Sets the current path to the Chrome binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeBinaryPath', { String: string });
+
+  /**
+   * Sets the current path to ChromeDriver.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeDriverPath', { String: string });
+
+  /**
+   * Sets the current path to the Firefox binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxBinaryPath', { String: string });
+
+  /**
+   * Sets the default Firefox profile.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves when the profile is set.
+   */
+  setOptionFirefoxDefaultProfile = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDefaultProfile', { String: string });
+
+  /**
+   * Sets the current path to the Firefox driver (geckodriver).
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox driver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDriverPath', { String: string });
+
+  /**
+   * Sets the current path to IEDriverServer.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionIeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionIeDriverPath', { String: string });
+
+  /**
+   * Sets the last used directory path.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The directory path.
+   * @returns {Promise<any>} A promise that resolves when the directory is set.
+   */
+  setOptionLastDirectory = ({ string }) =>
+    this.api.request('/selenium/action/setOptionLastDirectory', { String: string });
+
+  /**
+   * Sets the current path to the PhantomJS binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionPhantomJsBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionPhantomJsBinaryPath', { String: string });
+
+  /**
+   * Adds a browser argument.
+   * @param {{ browser: string, argument: string, enabled?: string }} args - Object containing:
+   *   - browser: The browser, e.g. "chrome" or "firefox".
+   *   - argument: The argument to add.
+   *   - enabled: (Optional) The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the argument is added.
+   */
+  addBrowserArgument = ({ browser, argument, enabled }) => {
+    const params = { browser, argument };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/selenium/action/addBrowserArgument', params);
+  };
+
+  /**
+   * Launches a browser proxying through ZAP.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser to launch (e.g. "chrome" or "firefox").
+   * @returns {Promise<any>} A promise that resolves when the browser is launched.
+   */
+  launchBrowser = ({ browser }) =>
+    this.api.request('/selenium/action/launchBrowser', { browser });
+
+  /**
+   * Removes a browser argument.
+   * @param {{ browser: string, argument: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument to remove.
+   * @returns {Promise<any>} A promise that resolves when the argument is removed.
+   */
+  removeBrowserArgument = ({ browser, argument }) =>
+    this.api.request('/selenium/action/removeBrowserArgument', { browser, argument });
+
+  /**
+   * Sets whether a browser argument is enabled.
+   * @param {{ browser: string, argument: string, enabled: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument.
+   *   - enabled: The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the setting is applied.
+   */
+  setBrowserArgumentEnabled = ({ browser, argument, enabled }) =>
+    this.api.request('/selenium/action/setBrowserArgumentEnabled', { browser, argument, enabled });
 }
 
-/**
- * Launches a browser proxying through ZAP, for manual usage.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- **/
-Selenium.prototype.launchBrowser = function (args) {
-  return this.api.request('/selenium/action/launchBrowser/', { browser: args.browser })
-}
-
-/**
- * Removes a browser argument.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- **/
-Selenium.prototype.removeBrowserArgument = function (args) {
-  return this.api.request('/selenium/action/removeBrowserArgument/', { browser: args.browser, argument: args.argument })
-}
-
-/**
- * Sets whether or not a browser argument is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Selenium.prototype.setBrowserArgumentEnabled = function (args) {
-  return this.api.request('/selenium/action/setBrowserArgumentEnabled/', { browser: args.browser, argument: args.argument, enabled: args.enabled })
-}
-
-module.exports = Selenium
+module.exports = Selenium;
