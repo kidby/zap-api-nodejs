@@ -7,11 +7,7 @@ declare namespace ZAProxy {
     message: string;
     detail?: string;
   }
-  
-  /**
-   * A union representing the generic response data you expect from ZAProxy.
-   * (This may be a JSON object, an XML document, a plain string, or undefined.)
-   */
+
   export type GenericZapApiResponseData =
     | { code: string; message: string; detail?: string; data?: unknown }
     | XMLDocument
@@ -57,8 +53,6 @@ declare namespace ZAProxy {
     
     /**
      * Makes an API request to ZAProxy.
-     * Filters out properties from the data that are undefined, null, or empty strings,
-     * while preserving valid falsy values such as 0 or '0'.
      *
      * @template T The expected response type.
      * @template D The type of the request data.

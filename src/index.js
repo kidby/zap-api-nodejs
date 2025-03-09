@@ -127,7 +127,7 @@ class ClientApi {
       proxy: proxyConfig,
     };
 
-    Object.keys(modules).forEach((key) => {
+    Object.keys(modules).forEach(key => {
       this[key] = new modules[key](this);
     });
   }
@@ -154,8 +154,8 @@ class ClientApi {
     if (data) {
       const filteredData = Object.fromEntries(
         Object.entries(data).filter(
-          ([, value]) => value !== undefined && value !== null && value !== ''
-        )
+          ([, value]) => value !== undefined && value !== null && value !== '',
+        ),
       );
       if (method === 'GET') {
         config.params = filteredData;
