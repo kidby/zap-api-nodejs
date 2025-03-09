@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Pnh {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +29,7 @@ class Pnh {
   /**
    * Sends a monitor message.
    * @param {{ id: string, message: string }} args - Object containing the monitor ID and message.
-   * @returns {Promise<any>} A promise resolving with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the response.
    */
   monitor = ({ id, message }) =>
     this.api.request('/pnh/action/monitor', { id, message });
@@ -35,7 +37,7 @@ class Pnh {
   /**
    * Sends an oracle command for the specified monitor.
    * @param {{ id: string }} args - Object containing the monitor ID.
-   * @returns {Promise<any>} A promise resolving with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the response.
    */
   oracle = ({ id }) =>
     this.api.request('/pnh/action/oracle', { id });
@@ -43,7 +45,7 @@ class Pnh {
   /**
    * Starts monitoring for the specified URL.
    * @param {{ url: string }} args - Object containing the URL.
-   * @returns {Promise<any>} A promise resolving with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the response.
    */
   startMonitoring = ({ url }) =>
     this.api.request('/pnh/action/startMonitoring', { url });
@@ -51,35 +53,35 @@ class Pnh {
   /**
    * Stops monitoring for the specified monitor.
    * @param {{ id: string }} args - Object containing the monitor ID.
-   * @returns {Promise<any>} A promise resolving with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the response.
    */
   stopMonitoring = ({ id }) =>
     this.api.request('/pnh/action/stopMonitoring', { id });
 
   /**
    * Retrieves Pnh data.
-   * @returns {Promise<any>} A promise resolving with the Pnh data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Pnh data.
    */
   pnh = () =>
     this.api.request('/pnh/other/pnh/');
 
   /**
    * Retrieves the manifest.
-   * @returns {Promise<any>} A promise resolving with the manifest data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the manifest data.
    */
   manifest = () =>
     this.api.request('/pnh/other/manifest/');
 
   /**
    * Retrieves service data.
-   * @returns {Promise<any>} A promise resolving with the service data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the service data.
    */
   service = () =>
     this.api.request('/pnh/other/service/');
 
   /**
    * Retrieves the Firefox XPI file for Pnh.
-   * @returns {Promise<any>} A promise resolving with the XPI file data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the XPI file data.
    */
   fxPnhXpi = () =>
     this.api.request('/pnh/other/fx_pnh.xpi/');

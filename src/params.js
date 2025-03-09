@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Params {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class Params {
    * Shows the parameters for the specified site, or for all sites if the site is not specified.
    *
    * @param {{ site?: string }} [args={}] - Object containing the site (optional).
-   * @returns {Promise<any>} A promise that resolves with the parameters.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the parameters.
    */
   params = ({ site } = {}) => {
     return this.api.request('/params/view/params', { site });

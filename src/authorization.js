@@ -16,12 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * Class representing the Authorization API for ZAP Proxy.
- * Provides methods to get and set the authorization detection method for a context.
- *
- * @param {object} clientApi - The client API instance for making HTTP requests.
- */
+
+'use strict';
+
+/// <reference path="../index.d.ts" />
+
 class Authorization {
   constructor(clientApi) {
     this.api = clientApi;
@@ -31,7 +30,7 @@ class Authorization {
    * Obtains all the configuration of the authorization detection method for a given context.
    *
    * @param {{ contextId: string }} args - Object containing the context ID.
-   * @returns {Promise} - A promise that resolves with the configuration details.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} - A promise that resolves with the configuration details.
    */
   getAuthorizationDetectionMethod = ({ contextId }) =>
     this.api.request('/authorization/view/getAuthorizationDetectionMethod', { contextId });
@@ -48,7 +47,7 @@ class Authorization {
    *   statusCode: string,
    *   logicalOperator: string
    * }} args - Object containing the configuration parameters.
-   * @returns {Promise} - A promise that resolves when the method is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} - A promise that resolves when the method is set.
    */
   setBasicAuthorizationDetectionMethod = ({ contextId, headerRegex, bodyRegex, statusCode, logicalOperator }) =>
     this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod', {

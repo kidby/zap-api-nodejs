@@ -19,10 +19,9 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Alert {
-  /**
-   * @param {object} clientApi - The client API instance.
-   */
   constructor(clientApi) {
     this.api = clientApi;
   }
@@ -30,14 +29,14 @@ class Alert {
   /**
    * Gets the alert with the given ID.
    * @param {{ id: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   alert = ({ id }) => this.api.request('/alert/view/alert', { id });
 
   /**
    * Retrieves alerts, optionally filtered by URL or risk ID, with pagination.
    * @param {{ baseurl?: string, start?: string, count?: string, riskId?: 0|1|2|3 }} [args={}]
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getAlerts = ({ baseurl, start, count, riskId } = {}) =>
     this.api.request('/alert/view/alerts', { baseurl, start, count, riskId });
@@ -45,7 +44,7 @@ class Alert {
   /**
    * Retrieves a summary of alerts, optionally filtered by URL.
    * @param {{ baseurl?: string }} [args={}]
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   alertsSummary = ({ baseurl } = {}) =>
     this.api.request('/alert/view/alertsSummary', { baseurl });
@@ -53,7 +52,7 @@ class Alert {
   /**
    * Retrieves the number of alerts, optionally filtered by URL or risk ID.
    * @param {{ baseurl?: string, riskId?: 0|1|2|3 }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   numberOfAlerts = ({ baseurl, riskId }) =>
     this.api.request('/alert/view/numberOfAlerts', { baseurl, riskId });
@@ -61,7 +60,7 @@ class Alert {
   /**
    * Retrieves a detailed summary of alerts, optionally filtered by URL.
    * @param {{ url?: string, recurse?: boolean }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   alertsByRisk = ({ url, recurse }) =>
     this.api.request('/alert/view/alertsByRisk', { url, recurse });
@@ -69,14 +68,14 @@ class Alert {
   /**
    * Retrieves a count of alerts, similar to alertsPerRisk, optionally filtered.
    * @param {{ url?: string, recurse?: boolean }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   alertCountsByRisk = ({ url, recurse }) =>
     this.api.request('/alert/view/alertCountsByRisk', { url, recurse });
 
   /**
    * Deletes all alerts of the current session.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   deleteAllAlerts = () =>
     this.api.request('/alert/action/deleteAllAlerts');
@@ -84,7 +83,7 @@ class Alert {
   /**
    * Deletes an alert by a given ID.
    * @param {{ id: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   deleteAlert = ({ id }) =>
     this.api.request('/alert/action/deleteAlert', { id });
@@ -92,7 +91,7 @@ class Alert {
   /**
    * Updates the confidence of specified alerts.
    * @param {{ ids?: string, confidenceId?: 1|2|3|4 }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   updateAlertsConfidence = ({ ids, confidenceId }) =>
     this.api.request('/alert/action/updateAlertsConfidence', { ids, confidenceId: `${confidenceId}` });
@@ -100,7 +99,7 @@ class Alert {
   /**
    * Updates the risk of specified alerts.
    * @param {{ ids?: string, riskId?: 0|1|2|3 }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   updateAlertsRisk = ({ ids, riskId }) =>
     this.api.request('/alert/action/updateAlertsRisk', { ids, riskId: `${riskId}` });
@@ -122,7 +121,7 @@ class Alert {
    *   cweId?: string,
    *   wascId?: string
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   updateAlert = ({
                    id,
@@ -173,7 +172,7 @@ class Alert {
    *   cweId?: string,
    *   wascId?: string
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   addAlert = ({
                 messageId,

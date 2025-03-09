@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 /**
  * Class representing the RuleConfig API for ZAProxy.
  */
@@ -35,7 +37,7 @@ class RuleConfig {
    *
    * @param {{ key: string }} args - Object containing:
    *   - key: The key of the rule configuration.
-   * @returns {Promise<any>} A promise resolving with the rule configuration value.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the rule configuration value.
    */
   ruleConfigValue = ({ key }) =>
     this.api.request('/ruleConfig/view/ruleConfigValue', { key });
@@ -43,7 +45,7 @@ class RuleConfig {
   /**
    * Shows all of the rule configurations.
    *
-   * @returns {Promise<any>} A promise resolving with all rule configurations.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with all rule configurations.
    */
   allRuleConfigs = () =>
     this.api.request('/ruleConfig/view/allRuleConfigs');
@@ -53,7 +55,7 @@ class RuleConfig {
    *
    * @param {{ key: string }} args - Object containing:
    *   - key: The key of the rule configuration to reset.
-   * @returns {Promise<any>} A promise resolving when the rule configuration is reset.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the rule configuration is reset.
    */
   resetRuleConfigValue = ({ key }) =>
     this.api.request('/ruleConfig/action/resetRuleConfigValue', { key });
@@ -61,7 +63,7 @@ class RuleConfig {
   /**
    * Resets all the rule configurations.
    *
-   * @returns {Promise<any>} A promise resolving when all rule configurations are reset.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all rule configurations are reset.
    */
   resetAllRuleConfigValues = () =>
     this.api.request('/ruleConfig/action/resetAllRuleConfigValues');
@@ -72,7 +74,7 @@ class RuleConfig {
    * @param {{ key: string, value: string }} args - Object containing:
    *   - key: The key of the rule configuration.
    *   - value: The value to set.
-   * @returns {Promise<any>} A promise resolving when the rule configuration is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the rule configuration is set.
    */
   setRuleConfigValue = ({ key, value }) =>
     this.api.request('/ruleConfig/action/setRuleConfigValue', { key, value });

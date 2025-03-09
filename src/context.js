@@ -16,8 +16,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+'use strict';
+
+/// <reference path="../index.d.ts" />
+
 /**
- * @typedef {('Db' |
+ * @typedef {'Db' |
  *   'Db.Firebird' |
  *   'Db.HypersonicSQL' |
  *   'Db.IBMDB2' |
@@ -45,23 +50,22 @@
  *   'Protocol.LDAP' |
  *   'WS' |
  *   'WS.Apache' |
- *   'WS.IIS')} TechnologyName
+ *   'WS.IIS'} TechnologyName
  */
 
 /**
- * Class representing ZAP Context API operations.
+ * @typedef {TechnologyName[]} TechnologyNames
  */
+
+
 class Context {
-  /**
-   * @param {object} clientApi - The client API instance.
-   */
   constructor(clientApi) {
     this.api = clientApi;
   }
 
   /**
    * Lists context names of current session.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   contextList() {
     return this.api.request('/context/view/contextList');
@@ -70,7 +74,7 @@ class Context {
   /**
    * Lists excluded regexs for a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   excludeRegexs({ contextName }) {
     return this.api.request('/context/view/excludeRegexs', { contextName });
@@ -79,7 +83,7 @@ class Context {
   /**
    * Lists included regexs for a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   includeRegexs({ contextName }) {
     return this.api.request('/context/view/includeRegexs', { contextName });
@@ -88,7 +92,7 @@ class Context {
   /**
    * Retrieves the details of a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   context({ contextName }) {
     return this.api.request('/context/view/context', { contextName });
@@ -96,7 +100,7 @@ class Context {
 
   /**
    * Lists the names of all built-in technologies.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   technologyList() {
     return this.api.request('/context/view/technologyList');
@@ -105,7 +109,7 @@ class Context {
   /**
    * Lists the names of technologies included in a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   includedTechnologyList({ contextName }) {
     return this.api.request('/context/view/includedTechnologyList', { contextName });
@@ -114,7 +118,7 @@ class Context {
   /**
    * Lists the names of technologies excluded from a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   excludedTechnologyList({ contextName }) {
     return this.api.request('/context/view/excludedTechnologyList', { contextName });
@@ -123,7 +127,7 @@ class Context {
   /**
    * Lists URLs belonging to a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   urls({ contextName }) {
     return this.api.request('/context/view/urls', { contextName });
@@ -132,7 +136,7 @@ class Context {
   /**
    * Adds an exclude regex to a context.
    * @param {{ contextName: string, regex: string }} args - Object with context name and regex.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   excludeFromContext({ contextName, regex }) {
     return this.api.request('/context/action/excludeFromContext', { contextName, regex });
@@ -141,7 +145,7 @@ class Context {
   /**
    * Adds an include regex to a context.
    * @param {{ contextName: string, regex: string }} args - Object with context name and regex.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   includeInContext({ contextName, regex }) {
     return this.api.request('/context/action/includeInContext', { contextName, regex });
@@ -154,7 +158,7 @@ class Context {
    *   incRegexs: string,
    *   excRegexs: string,
    * }} args - Object with context name, include and exclude regexs.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   setContextRegexs({ contextName, incRegexs, excRegexs }) {
     return this.api.request('/context/action/setContextRegexs', { contextName, incRegexs, excRegexs });
@@ -171,7 +175,7 @@ class Context {
    *   pollFrequency: string,
    *   pollFrequencyUnits: string,
    * }} args
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   setContextCheckingStrategy({ contextName, checkingStrategy, pollUrl, pollData, pollHeaders, pollFrequency, pollFrequencyUnits }) {
     return this.api.request('/context/action/setContextCheckingStrategy', {
@@ -188,7 +192,7 @@ class Context {
   /**
    * Creates a new context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   newContext({ contextName }) {
     return this.api.request('/context/action/newContext', { contextName });
@@ -197,7 +201,7 @@ class Context {
   /**
    * Removes a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   removeContext({ contextName }) {
     return this.api.request('/context/action/removeContext', { contextName });
@@ -209,7 +213,7 @@ class Context {
    *   contextName: string,
    *   contextFile: string,
    * }} args - Object with context name and file name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   exportContext({ contextName, contextFile }) {
     return this.api.request('/context/action/exportContext', { contextName, contextFile });
@@ -218,7 +222,7 @@ class Context {
   /**
    * Imports a context from a file.
    * @param {{ contextFile: string }} args - Object with the file name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   importContext({ contextFile }) {
     return this.api.request('/context/action/importContext', { contextFile });
@@ -228,9 +232,9 @@ class Context {
    * Includes technologies in a context.
    * @param {{
    *   contextName: string,
-   *   technologyNames: string,
+   *   technologyNames: technologyNames,
    * }} args - Object with context name and a comma-separated string of TechnologyName values.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   includeContextTechnologies({ contextName, technologyNames }) {
     return this.api.request('/context/action/includeContextTechnologies', { contextName, technologyNames });
@@ -239,7 +243,7 @@ class Context {
   /**
    * Includes all built-in technologies in a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   includeAllContextTechnologies({ contextName }) {
     return this.api.request('/context/action/includeAllContextTechnologies', { contextName });
@@ -249,9 +253,9 @@ class Context {
    * Excludes technologies from a context.
    * @param {{
    *   contextName: string,
-   *   technologyNames: string,
+   *   technologyNames: technologyNames,
    * }} args - Object with context name and a comma-separated string of TechnologyName values.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   excludeContextTechnologies({ contextName, technologyNames }) {
     return this.api.request('/context/action/excludeContextTechnologies', { contextName, technologyNames });
@@ -260,7 +264,7 @@ class Context {
   /**
    * Excludes all built-in technologies from a context.
    * @param {{ contextName: string }} args - Object with the context name.
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   excludeAllContextTechnologies({ contextName }) {
     return this.api.request('/context/action/excludeAllContextTechnologies', { contextName });
@@ -272,7 +276,7 @@ class Context {
    *   contextName: string,
    *   booleanInScope: string,
    * }} args - Object with context name and a string ("true"/"false").
-   * @returns {Promise<any>}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   setContextInScope({ contextName, booleanInScope }) {
     return this.api.request('/context/action/setContextInScope', { contextName, booleanInScope });

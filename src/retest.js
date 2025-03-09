@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Retest {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class Retest {
    * Retests alerts with the specified IDs.
    *
    * @param {{ alertIds: string }} args - Object containing the IDs of the alerts to retest.
-   * @returns {Promise<any>} A promise that resolves with the retest result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the retest result.
    */
   retest = ({ alertIds }) =>
     this.api.request('/retest/action/retest', { alertIds });

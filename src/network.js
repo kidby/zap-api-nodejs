@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Network {
   constructor(clientApi) {
     this.api = clientApi;
@@ -29,7 +31,7 @@ class Network {
    * Used when generating a new Root CA certificate.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the Root CA certificate validity.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Root CA certificate validity.
    */
   getRootCaCertValidity = () =>
     this.api.request('/network/view/getRootCaCertValidity');
@@ -39,7 +41,7 @@ class Network {
    * Used when generating server certificates.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the server certificate validity.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the server certificate validity.
    */
   getServerCertValidity = () =>
     this.api.request('/network/view/getServerCertValidity');
@@ -48,7 +50,7 @@ class Network {
    * Gets the aliases used to identify the local servers/proxies.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the aliases.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the aliases.
    */
   getAliases = () =>
     this.api.request('/network/view/getAliases');
@@ -57,7 +59,7 @@ class Network {
    * Gets the local servers/proxies.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the local servers.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the local servers.
    */
   getLocalServers = () =>
     this.api.request('/network/view/getLocalServers');
@@ -66,7 +68,7 @@ class Network {
    * Gets the authorities that will pass-through the local proxies.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the pass-through authorities.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the pass-through authorities.
    */
   getPassThroughs = () =>
     this.api.request('/network/view/getPassThroughs');
@@ -75,7 +77,7 @@ class Network {
    * Gets the connection timeout, in seconds.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the connection timeout.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the connection timeout.
    */
   getConnectionTimeout = () =>
     this.api.request('/network/view/getConnectionTimeout');
@@ -84,7 +86,7 @@ class Network {
    * Gets the default user-agent.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the default user-agent.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the default user-agent.
    */
   getDefaultUserAgent = () =>
     this.api.request('/network/view/getDefaultUserAgent');
@@ -93,7 +95,7 @@ class Network {
    * Gets the TTL (in seconds) of successful DNS queries.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the TTL of successful DNS queries.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the TTL of successful DNS queries.
    */
   getDnsTtlSuccessfulQueries = () =>
     this.api.request('/network/view/getDnsTtlSuccessfulQueries');
@@ -102,7 +104,7 @@ class Network {
    * Gets the HTTP proxy.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the HTTP proxy.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the HTTP proxy.
    */
   getHttpProxy = () =>
     this.api.request('/network/view/getHttpProxy');
@@ -111,7 +113,7 @@ class Network {
    * Gets the HTTP proxy exclusions.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the HTTP proxy exclusions.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the HTTP proxy exclusions.
    */
   getHttpProxyExclusions = () =>
     this.api.request('/network/view/getHttpProxyExclusions');
@@ -120,7 +122,7 @@ class Network {
    * Gets the SOCKS proxy.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the SOCKS proxy.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the SOCKS proxy.
    */
   getSocksProxy = () =>
     this.api.request('/network/view/getSocksProxy');
@@ -129,7 +131,7 @@ class Network {
    * Tells whether the HTTP proxy authentication is enabled.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the authentication status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication status.
    */
   isHttpProxyAuthEnabled = () =>
     this.api.request('/network/view/isHttpProxyAuthEnabled');
@@ -138,7 +140,7 @@ class Network {
    * Tells whether the HTTP proxy is enabled.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the enabled status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the enabled status.
    */
   isHttpProxyEnabled = () =>
     this.api.request('/network/view/isHttpProxyEnabled');
@@ -147,7 +149,7 @@ class Network {
    * Tells whether the SOCKS proxy is enabled.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the enabled status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the enabled status.
    */
   isSocksProxyEnabled = () =>
     this.api.request('/network/view/isSocksProxyEnabled');
@@ -156,7 +158,7 @@ class Network {
    * Tells whether to use global HTTP state.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the global HTTP state usage.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the global HTTP state usage.
    */
   isUseGlobalHttpState = () =>
     this.api.request('/network/view/isUseGlobalHttpState');
@@ -165,7 +167,7 @@ class Network {
    * Generates a new Root CA certificate, used to issue server certificates.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving when the certificate is generated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the certificate is generated.
    */
   generateRootCaCert = () =>
     this.api.request('/network/action/generateRootCaCert');
@@ -175,7 +177,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path to the PEM file.
-   * @returns {Promise<any>} A promise resolving when the certificate is imported.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the certificate is imported.
    */
   importRootCaCert = ({ filepath }) =>
     this.api.request('/network/action/importRootCaCert', { filePath: filepath });
@@ -186,7 +188,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ validity: string }} args - Object containing the validity (in days).
-   * @returns {Promise<any>} A promise resolving when the validity is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the validity is set.
    */
   setRootCaCertValidity = ({ validity }) =>
     this.api.request('/network/action/setRootCaCertValidity', { validity });
@@ -197,7 +199,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ validity: string }} args - Object containing the validity (in days).
-   * @returns {Promise<any>} A promise resolving when the validity is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the validity is set.
    */
   setServerCertValidity = ({ validity }) =>
     this.api.request('/network/action/setServerCertValidity', { validity });
@@ -207,7 +209,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ name: string, enabled?: string }} args - Object containing the alias name and optional enabled state.
-   * @returns {Promise<any>} A promise resolving when the alias is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the alias is added.
    */
   addAlias = ({ name, enabled }) => {
     const params = { name };
@@ -228,7 +230,7 @@ class Network {
    *   decodeResponse?: string,
    *   removeAcceptEncoding?: string,
    * }} args - Object containing the server details.
-   * @returns {Promise<any>} A promise resolving when the server is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the server is added.
    */
   addLocalServer = ({ address, port, api, proxy, behindNat, decodeResponse, removeAcceptEncoding }) => {
     return this.api.request('/network/action/addLocalServer', { address, port, api, proxy, behindNat, decodeResponse, removeAcceptEncoding });
@@ -239,7 +241,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ authority: string, enabled?: string }} args - Object containing the authority and optional enabled state.
-   * @returns {Promise<any>} A promise resolving when the authority is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the authority is added.
    */
   addPassThrough = ({ authority, enabled }) => {
     const params = { authority };
@@ -252,7 +254,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ name: string }} args - Object containing the alias name.
-   * @returns {Promise<any>} A promise resolving when the alias is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the alias is removed.
    */
   removeAlias = ({ name }) =>
     this.api.request('/network/action/removeAlias', { name });
@@ -262,7 +264,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ address: string, port: string }} args - Object containing the address and port.
-   * @returns {Promise<any>} A promise resolving when the server is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the server is removed.
    */
   removeLocalServer = ({ address, port }) =>
     this.api.request('/network/action/removeLocalServer', { address, port });
@@ -272,7 +274,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ authority: string }} args - Object containing the authority.
-   * @returns {Promise<any>} A promise resolving when the pass-through is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the pass-through is removed.
    */
   removePassThrough = ({ authority }) =>
     this.api.request('/network/action/removePassThrough', { authority });
@@ -282,7 +284,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ name: string, enabled: string }} args - Object containing the alias name and enabled state.
-   * @returns {Promise<any>} A promise resolving when the alias state is updated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the alias state is updated.
    */
   setAliasEnabled = ({ name, enabled }) =>
     this.api.request('/network/action/setAliasEnabled', { name, enabled });
@@ -292,7 +294,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ authority: string, enabled: string }} args - Object containing the authority and enabled state.
-   * @returns {Promise<any>} A promise resolving when the pass-through state is updated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the pass-through state is updated.
    */
   setPassThroughEnabled = ({ authority, enabled }) =>
     this.api.request('/network/action/setPassThroughEnabled', { authority, enabled });
@@ -302,7 +304,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ timeout: string }} args - Object containing the timeout (in seconds).
-   * @returns {Promise<any>} A promise resolving when the timeout is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the timeout is set.
    */
   setConnectionTimeout = ({ timeout }) =>
     this.api.request('/network/action/setConnectionTimeout', { timeout });
@@ -312,7 +314,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ useragent: string }} args - Object containing the default user-agent.
-   * @returns {Promise<any>} A promise resolving when the user-agent is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the user-agent is set.
    */
   setDefaultUserAgent = ({ useragent }) =>
     this.api.request('/network/action/setDefaultUserAgent', { userAgent: useragent });
@@ -322,7 +324,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ ttl: string }} args - Object containing the TTL (in seconds).
-   * @returns {Promise<any>} A promise resolving when the TTL is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the TTL is set.
    */
   setDnsTtlSuccessfulQueries = ({ ttl }) =>
     this.api.request('/network/action/setDnsTtlSuccessfulQueries', { ttl });
@@ -332,7 +334,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ host: string, enabled?: string }} args - Object containing the host and optional enabled state.
-   * @returns {Promise<any>} A promise resolving when the exclusion is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the exclusion is added.
    */
   addHttpProxyExclusion = ({ host, enabled }) => {
     const params = { host };
@@ -345,7 +347,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ host: string }} args - Object containing the host.
-   * @returns {Promise<any>} A promise resolving when the exclusion is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the exclusion is removed.
    */
   removeHttpProxyExclusion = ({ host }) =>
     this.api.request('/network/action/removeHttpProxyExclusion', { host });
@@ -361,7 +363,7 @@ class Network {
    *   username?: string,
    *   password?: string,
    * }} args - Object containing the proxy configuration.
-   * @returns {Promise<any>} A promise resolving when the proxy is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the proxy is set.
    */
   setHttpProxy = ({ host, port, realm, username, password }) => {
     return this.api.request('/network/action/setHttpProxy', { host, port, realm, username, password });
@@ -372,7 +374,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ enabled: string }} args - Object containing the enabled state.
-   * @returns {Promise<any>} A promise resolving when the authentication state is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the authentication state is set.
    */
   setHttpProxyAuthEnabled = ({ enabled }) =>
     this.api.request('/network/action/setHttpProxyAuthEnabled', { enabled });
@@ -382,7 +384,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ enabled: string }} args - Object containing the enabled state.
-   * @returns {Promise<any>} A promise resolving when the proxy state is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the proxy state is set.
    */
   setHttpProxyEnabled = ({ enabled }) =>
     this.api.request('/network/action/setHttpProxyEnabled', { enabled });
@@ -392,7 +394,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ host: string, enabled: string }} args - Object containing the host and enabled state.
-   * @returns {Promise<any>} A promise resolving when the exclusion state is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the exclusion state is set.
    */
   setHttpProxyExclusionEnabled = ({ host, enabled }) =>
     this.api.request('/network/action/setHttpProxyExclusionEnabled', { host, enabled });
@@ -409,7 +411,7 @@ class Network {
    *   username?: string,
    *   password?: string,
    * }} args - Object containing the SOCKS proxy configuration.
-   * @returns {Promise<any>} A promise resolving when the configuration is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the configuration is set.
    */
   setSocksProxy = ({ host, port, version, useDns, username, password }) => {
     return this.api.request('/network/action/setSocksProxy', { host, port, version, useDns, username, password });
@@ -420,7 +422,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ enabled: string }} args - Object containing the enabled state.
-   * @returns {Promise<any>} A promise resolving when the proxy state is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the proxy state is set.
    */
   setSocksProxyEnabled = ({ enabled }) =>
     this.api.request('/network/action/setSocksProxyEnabled', { enabled });
@@ -430,7 +432,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ use: string }} args - Object containing the use state.
-   * @returns {Promise<any>} A promise resolving when the global HTTP state is updated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the global HTTP state is updated.
    */
   setUseGlobalHttpState = ({ use }) =>
     this.api.request('/network/action/setUseGlobalHttpState', { use });
@@ -441,7 +443,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string, password: string, index?: string }} args - Object containing the file path, password, and optional index.
-   * @returns {Promise<any>} A promise resolving when the certificate is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the certificate is added.
    */
   addPkcs12ClientCertificate = ({ filepath, password, index }) => {
     const params = { filePath: filepath, password };
@@ -454,7 +456,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ use: string }} args - Object containing the use state.
-   * @returns {Promise<any>} A promise resolving when the client certificate state is updated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the client certificate state is updated.
    */
   setUseClientCertificate = ({ use }) =>
     this.api.request('/network/action/setUseClientCertificate', { use });
@@ -463,7 +465,7 @@ class Network {
    * Provides a PAC file, proxying through the main proxy.
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the PAC file content.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the PAC file content.
    */
   proxypac = () =>
     this.api.request('/network/other/proxy.pac/');
@@ -473,7 +475,7 @@ class Network {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ proxy: string }} args - Object containing the HTTP proxy configuration.
-   * @returns {Promise<any>} A promise resolving when the proxy is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the proxy is set.
    */
   setProxy = ({ proxy }) =>
     this.api.request('/network/other/setProxy/', { proxy });
@@ -483,7 +485,7 @@ class Network {
    * Suitable for import into client applications (e.g. browsers).
    * This component is optional and the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the Root CA certificate.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Root CA certificate.
    */
   rootCaCert = () =>
     this.api.request('/network/other/rootCaCert/');

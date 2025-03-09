@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Users {
   constructor(clientApi) {
     this.api = clientApi;
@@ -29,7 +31,7 @@ class Users {
    *
    * @param {{ contextId?: string }} [args={}] - Object containing:
    *   - contextId: (Optional) The Context ID.
-   * @returns {Promise<any>} A promise resolving with the users list.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the users list.
    */
   usersList = ({ contextId } = {}) => {
     const params = {};
@@ -43,7 +45,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the user data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the user data.
    */
   getUserById = ({ contextId, userId }) =>
     this.api.request('/users/view/getUserById', { contextId, userId: userId });
@@ -53,7 +55,7 @@ class Users {
    *
    * @param {{ contextId: string }} args - Object containing:
    *   - contextId: The Context ID.
-   * @returns {Promise<any>} A promise resolving with the authentication credentials config parameters.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication credentials config parameters.
    */
   getAuthenticationCredentialsConfigParams = ({ contextId }) =>
     this.api.request('/users/view/getAuthenticationCredentialsConfigParams', { contextId });
@@ -64,7 +66,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the authentication credentials.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication credentials.
    */
   getAuthenticationCredentials = ({ contextId, userId }) =>
     this.api.request('/users/view/getAuthenticationCredentials', { contextId, userId: userId });
@@ -75,7 +77,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the authentication state.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication state.
    */
   getAuthenticationState = ({ contextId, userId }) =>
     this.api.request('/users/view/getAuthenticationState', { contextId, userId: userId });
@@ -86,7 +88,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the authentication session.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication session.
    */
   getAuthenticationSession = ({ contextId, userId }) =>
     this.api.request('/users/view/getAuthenticationSession', { contextId, userId: userId });
@@ -97,7 +99,7 @@ class Users {
    * @param {{ contextId: string, name: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - name: The user name.
-   * @returns {Promise<any>} A promise resolving with the new user.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the new user.
    */
   newUser = ({ contextId, name }) =>
     this.api.request('/users/action/newUser', { contextId, name });
@@ -108,7 +110,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving when the user is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the user is removed.
    */
   removeUser = ({ contextId, userId }) =>
     this.api.request('/users/action/removeUser', { contextId, userId: userId });
@@ -120,7 +122,7 @@ class Users {
    *   - contextId: The Context ID.
    *   - userId: The User ID.
    *   - enabled: Whether the user should be enabled.
-   * @returns {Promise<any>} A promise resolving when the user is enabled/disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the user is enabled/disabled.
    */
   setUserEnabled = ({ contextId, userId, enabled }) =>
     this.api.request('/users/action/setUserEnabled', { contextId, userId, enabled });
@@ -132,7 +134,7 @@ class Users {
    *   - contextId: The Context ID.
    *   - userId: The User ID.
    *   - name: The new username.
-   * @returns {Promise<any>} A promise resolving when the user is renamed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the user is renamed.
    */
   setUserName = ({ contextId, userId, name }) =>
     this.api.request('/users/action/setUserName', { contextId, userId, name });
@@ -144,7 +146,7 @@ class Users {
    *   - contextId: The Context ID.
    *   - userId: The User ID.
    *   - authCredentialsConfigParams: (Optional) The authentication credentials config parameters.
-   * @returns {Promise<any>} A promise resolving when the credentials are set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the credentials are set.
    */
   setAuthenticationCredentials = ({ contextId, userId, authCredentialsConfigParams }) =>
     this.api.request('/users/action/setAuthenticationCredentials', { contextId, userId, authCredentialsConfigParams });
@@ -156,7 +158,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the authentication results.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the authentication results.
    */
   authenticateAsUser = ({ contextId, userId }) =>
     this.api.request('/users/action/authenticateAsUser', { contextId, userId: userId });
@@ -167,7 +169,7 @@ class Users {
    * @param {{ contextId: string, userId: string }} args - Object containing:
    *   - contextId: The Context ID.
    *   - userId: The User ID.
-   * @returns {Promise<any>} A promise resolving with the polling results.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the polling results.
    */
   pollAsUser = ({ contextId, userId }) =>
     this.api.request('/users/action/pollAsUser', { contextId, userId: userId });
@@ -187,7 +189,7 @@ class Users {
    *   - lastPollResult: (Optional) Last Poll Result ('true' or 'false').
    *   - lastPollTimeInMs: (Optional) Last Poll Time in Milliseconds (long or 'NOW').
    *   - requestsSinceLastPoll: (Optional) Requests Since Last Poll (integer).
-   * @returns {Promise<any>} A promise resolving when the state is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the state is set.
    */
   setAuthenticationState = ({ contextId, userId, lastPollResult, lastPollTimeInMs, requestsSinceLastPoll }) =>
     this.api.request('/users/action/setAuthenticationState', { contextId, userId, lastPollResult, lastPollTimeInMs, requestsSinceLastPoll });
@@ -212,7 +214,7 @@ class Users {
    *   - value: The Cookie Value.
    *   - path: (Optional) The Cookie Path.
    *   - secure: (Optional) If the Cookie is secure.
-   * @returns {Promise<any>} A promise resolving when the cookie is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the cookie is set.
    */
   setCookie = ({ contextId, userId, domain, name, value, path, secure }) =>
     this.api.request('/users/action/setCookie', { contextId, userId, domain, name, value, path, secure });

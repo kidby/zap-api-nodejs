@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class ForcedUser {
   constructor(clientApi) {
     this.api = clientApi;
@@ -26,7 +28,7 @@ class ForcedUser {
 
   /**
    * Returns 'true' if 'forced user' mode is enabled, 'false' otherwise.
-   * @returns {Promise<any>} A promise that resolves with the forced user mode status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the forced user mode status.
    */
   isForcedUserModeEnabled = () =>
     this.api.request('/forcedUser/view/isForcedUserModeEnabled');
@@ -34,7 +36,7 @@ class ForcedUser {
   /**
    * Gets the user (ID) set as the forced user for the specified context.
    * @param {{ contextId: string }} args - Object containing the context ID.
-   * @returns {Promise<any>} A promise that resolves with the forced user ID.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the forced user ID.
    */
   getForcedUser = ({ contextId }) =>
     this.api.request('/forcedUser/view/getForcedUser', { contextId });
@@ -42,7 +44,7 @@ class ForcedUser {
   /**
    * Sets the user (ID) to be used as the forced user for the specified context.
    * @param {{ contextId: string, userId: string }} args - Object containing the context ID and user ID.
-   * @returns {Promise<any>} A promise that resolves when the forced user is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the forced user is set.
    */
   setForcedUser = ({ contextId, userId }) =>
     this.api.request('/forcedUser/action/setForcedUser', { contextId, userId });
@@ -50,7 +52,7 @@ class ForcedUser {
   /**
    * Enables or disables forced user mode.
    * @param {{ isSet: string }} args - Object containing a string value that represents the boolean state.
-   * @returns {Promise<any>} A promise that resolves when the forced user mode is updated.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the forced user mode is updated.
    */
   setForcedUserModeEnabled = ({ isSet }) =>
     this.api.request('/forcedUser/action/setForcedUserModeEnabled', { boolean: `${isSet}` });

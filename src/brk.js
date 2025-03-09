@@ -17,6 +17,10 @@
  * limitations under the License.
  */
 
+'use strict';
+
+/// <reference path="../index.d.ts" />
+
 class Break {
   constructor(clientApi) {
     this.api = clientApi;
@@ -24,7 +28,7 @@ class Break {
 
   /**
    * Returns true if ZAP is set to break on both requests and responses.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   isBreakAll() {
     return this.api.request('/break/view/isBreakAll');
@@ -32,7 +36,7 @@ class Break {
 
   /**
    * Returns true if ZAP is set to break on requests.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   isBreakRequest() {
     return this.api.request('/break/view/isBreakRequest');
@@ -40,7 +44,7 @@ class Break {
 
   /**
    * Returns true if ZAP is set to break on responses.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   isBreakResponse() {
     return this.api.request('/break/view/isBreakResponse');
@@ -48,7 +52,7 @@ class Break {
 
   /**
    * Returns the currently intercepted HTTP message (if any).
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   httpMessage() {
     return this.api.request('/break/view/httpMessage');
@@ -61,7 +65,7 @@ class Break {
    *   - type: The break type ('http-all', 'http-request', or 'http-response').
    *   - state: 'true' to enable breaking, 'false' to disable.
    *   - scope: Scope value (currently not used).
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   brk({ type, state, scope }) {
     return this.api.request('/break/action/break', { type, state, scope });
@@ -73,7 +77,7 @@ class Break {
    * @param {{ httpheader: string, httpbody?: string }} args - Object with properties:
    *   - httpheader: The new HTTP header.
    *   - httpbody: The new HTTP body (optional).
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   setHttpMessage(args) {
     const params = { httpHeader: args.httpheader };
@@ -85,7 +89,7 @@ class Break {
 
   /**
    * Submits the intercepted message and clears the global breakpoints.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   cont() {
     return this.api.request('/break/action/continue');
@@ -93,7 +97,7 @@ class Break {
 
   /**
    * Submits the intercepted message and enables interception for the next message.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   step() {
     return this.api.request('/break/action/step');
@@ -101,7 +105,7 @@ class Break {
 
   /**
    * Drops the currently intercepted message.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   drop() {
     return this.api.request('/break/action/drop');
@@ -111,7 +115,7 @@ class Break {
    * Adds a custom HTTP breakpoint.
    *
    * @param {{ string: string, location: string, match: string, inverse: string, ignorecase: string }} args - HTTP Breakpoint properties.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   addHttpBreakpoint({ string, location, match, inverse, ignorecase }) {
     return this.api.request('/break/action/addHttpBreakpoint', { string, location, match, inverse, ignorecase });
@@ -121,7 +125,7 @@ class Break {
    * Removes a custom HTTP breakpoint.
    *
    * @param {{ string: string, location: string, match: string, inverse: string, ignorecase: string }} args - HTTP Breakpoint properties.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   removeHttpBreakpoint({ string, location, match, inverse, ignorecase }) {
     return this.api.request('/break/action/removeHttpBreakpoint', { string, location, match, inverse, ignorecase });

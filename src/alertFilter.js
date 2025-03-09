@@ -19,11 +19,9 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class AlertFilter {
-  /**
-   * Manages alert filter-related API requests.
-   * @param {object} clientApi - The client API object for making requests.
-   */
   constructor(clientApi) {
     this.api = clientApi;
   }
@@ -31,14 +29,14 @@ class AlertFilter {
   /**
    * Lists the alert filters of the context with the given ID.
    * @param {string} contextId
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   alertFilterList = ({ contextId }) =>
     this.api.request('/alertFilter/view/alertFilterList', { contextId });
 
   /**
    * Lists the global alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   globalAlertFilterList = () =>
     this.api.request('/alertFilter/view/globalAlertFilterList');
@@ -59,7 +57,7 @@ class AlertFilter {
    *   evidence: string,
    *   evidenceIsRegex: boolean,
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   addAlertFilter = ({
                       contextId,
@@ -106,7 +104,7 @@ class AlertFilter {
    *   evidence: string,
    *   evidenceIsRegex: boolean,
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   removeAlertFilter = ({
                          contextId,
@@ -152,7 +150,7 @@ class AlertFilter {
    *   evidence: string,
    *   evidenceIsRegex: boolean,
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   addGlobalAlertFilter = ({
                             ruleId,
@@ -196,7 +194,7 @@ class AlertFilter {
    *   evidence: string,
    *   evidenceIsRegex: boolean,
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   removeGlobalAlertFilter = ({
                                ruleId,
@@ -227,42 +225,42 @@ class AlertFilter {
 
   /**
    * Applies all currently enabled Global and Context alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   applyAll = () =>
     this.api.request('/alertFilter/action/applyAll');
 
   /**
    * Applies all currently enabled Context alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   applyContext = () =>
     this.api.request('/alertFilter/action/applyContext');
 
   /**
    * Applies all currently enabled Global alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   applyGlobal = () =>
     this.api.request('/alertFilter/action/applyGlobal');
 
   /**
    * Tests all currently enabled Global and Context alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   testAll = () =>
     this.api.request('/alertFilter/action/testAll');
 
   /**
    * Tests all currently enabled Context alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   testContext = () =>
     this.api.request('/alertFilter/action/testContext');
 
   /**
    * Tests all currently enabled Global alert filters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   testGlobal = () =>
     this.api.request('/alertFilter/action/testGlobal');

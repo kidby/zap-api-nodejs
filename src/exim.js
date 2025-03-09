@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Exim {
   /**
    * Creates an instance of Exim.
@@ -33,7 +35,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   importHar = ({ filepath }) =>
     this.api.request('/exim/action/importHar', { filePath: filepath });
@@ -43,7 +45,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   importUrls = ({ filepath }) =>
     this.api.request('/exim/action/importUrls', { filePath: filepath });
@@ -53,7 +55,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   importZapLogs = ({ filepath }) =>
     this.api.request('/exim/action/importZapLogs', { filePath: filepath });
@@ -63,7 +65,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   importModsec2Logs = ({ filepath }) =>
     this.api.request('/exim/action/importModsec2Logs', { filePath: filepath });
@@ -73,7 +75,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   exportSitesTree = ({ filepath }) =>
     this.api.request('/exim/action/exportSitesTree/', { filePath: filepath });
@@ -83,7 +85,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ filepath: string }} args - Object containing the file path.
-   * @returns {Promise<any>} A promise that resolves with the response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the response.
    */
   pruneSitesTree = ({ filepath }) =>
     this.api.request('/exim/action/pruneSitesTree/', { filePath: filepath });
@@ -93,7 +95,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ baseurl?: string, start?: string, count?: string }} [args={}] - Object containing filter parameters.
-   * @returns {Promise<any>} A promise that resolves with the HAR data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the HAR data.
    */
   exportHar = ({ baseurl, start, count } = {}) =>
     this.api.request('/exim/other/exportHar/', { baseurl, start, count });
@@ -103,7 +105,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ ids: string }} args - Object containing comma-separated message IDs.
-   * @returns {Promise<any>} A promise that resolves with the HAR data.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the HAR data.
    */
   exportHarById = ({ ids }) =>
     this.api.request('/exim/other/exportHarById/', { ids });
@@ -114,7 +116,7 @@ class Exim {
    * This component is optional and the API will only work if it is installed.
    *
    * @param {{ request: string, followredirects?: string }} args - Object containing the HAR request and optional followRedirects flag.
-   * @returns {Promise<any>} A promise that resolves with the HAR response.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the HAR response.
    */
   sendHarRequest = ({ request, followredirects }) => {
     const params = { request };

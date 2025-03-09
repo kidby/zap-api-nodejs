@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Revisit {
   constructor(clientApi) {
     this.api = clientApi;
@@ -26,7 +28,7 @@ class Revisit {
 
   /**
    * Retrieves the list of revisit entries.
-   * @returns {Promise<any>} A promise resolving with the revisit list.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the revisit list.
    */
   revisitList = () => this.api.request('/revisit/view/revisitList');
 
@@ -36,7 +38,7 @@ class Revisit {
    *   - site: The site to be revisited.
    *   - startTime: The start time for the revisit.
    *   - endTime: The end time for the revisit.
-   * @returns {Promise<any>} A promise resolving with the action result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the action result.
    */
   revisitSiteOn = ({ site, startTime, endTime }) =>
     this.api.request('/revisit/action/revisitSiteOn', { site, startTime, endTime });
@@ -45,7 +47,7 @@ class Revisit {
    * Deactivates revisit on a site.
    * @param {{ site: string }} args - Object containing:
    *   - site: The site for which revisit should be turned off.
-   * @returns {Promise<any>} A promise resolving with the action result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the action result.
    */
   revisitSiteOff = ({ site }) =>
     this.api.request('/revisit/action/revisitSiteOff', { site });

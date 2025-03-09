@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 /**
  * Class representing the Passive Scan (Pscan) API for ZAProxy.
  */
@@ -32,7 +34,7 @@ class Pscan {
 
   /**
    * Tells whether the passive scan should be performed only on messages that are in scope.
-   * @returns {Promise<any>} A promise resolving with the scan-only-in-scope status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the scan-only-in-scope status.
    */
   scanOnlyInScope() {
     return this.api.request('/pscan/view/scanOnlyInScope');
@@ -40,7 +42,7 @@ class Pscan {
 
   /**
    * Gets the number of records the passive scanner still has to scan.
-   * @returns {Promise<any>} A promise resolving with the record count.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the record count.
    */
   recordsToScan() {
     return this.api.request('/pscan/view/recordsToScan');
@@ -48,7 +50,7 @@ class Pscan {
 
   /**
    * Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
-   * @returns {Promise<any>} A promise resolving with the list of scanners.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the list of scanners.
    */
   scanners() {
     return this.api.request('/pscan/view/scanners');
@@ -56,7 +58,7 @@ class Pscan {
 
   /**
    * Shows information about the passive scan rule currently being run (if any).
-   * @returns {Promise<any>} A promise resolving with the current rule details.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the current rule details.
    */
   currentRule() {
     return this.api.request('/pscan/view/currentRule');
@@ -64,7 +66,7 @@ class Pscan {
 
   /**
    * Shows information about the passive scan tasks currently being run (if any).
-   * @returns {Promise<any>} A promise resolving with the current tasks.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the current tasks.
    */
   currentTasks() {
     return this.api.request('/pscan/view/currentTasks');
@@ -72,7 +74,7 @@ class Pscan {
 
   /**
    * Gets the maximum number of alerts a passive scan rule should raise.
-   * @returns {Promise<any>} A promise resolving with the maximum alerts per rule.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum alerts per rule.
    */
   maxAlertsPerRule() {
     return this.api.request('/pscan/view/maxAlertsPerRule');
@@ -81,7 +83,7 @@ class Pscan {
   /**
    * Sets whether the passive scanning is enabled.
    * @param {{ enabled: string }} args - Object containing the enabled flag.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setEnabled({ enabled }) {
     return this.api.request('/pscan/action/setEnabled', { enabled });
@@ -90,7 +92,7 @@ class Pscan {
   /**
    * Sets whether the passive scan should be performed only on messages that are in scope.
    * @param {{ onlyInScope: string }} args - Object containing the onlyInScope flag.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setScanOnlyInScope({ onlyInScope }) {
     return this.api.request('/pscan/action/setScanOnlyInScope', { onlyInScope });
@@ -98,7 +100,7 @@ class Pscan {
 
   /**
    * Enables all passive scan rules.
-   * @returns {Promise<any>} A promise resolving when all scanners are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scanners are enabled.
    */
   enableAllScanners() {
     return this.api.request('/pscan/action/enableAllScanners');
@@ -106,7 +108,7 @@ class Pscan {
 
   /**
    * Disables all passive scan rules.
-   * @returns {Promise<any>} A promise resolving when all scanners are disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scanners are disabled.
    */
   disableAllScanners() {
     return this.api.request('/pscan/action/disableAllScanners');
@@ -115,7 +117,7 @@ class Pscan {
   /**
    * Enables passive scan rules with the given IDs (comma-separated list).
    * @param {{ ids: string }} args - Object containing the comma-separated IDs.
-   * @returns {Promise<any>} A promise resolving when the scanners are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scanners are enabled.
    */
   enableScanners({ ids }) {
     return this.api.request('/pscan/action/enableScanners', { ids });
@@ -124,7 +126,7 @@ class Pscan {
   /**
    * Disables passive scan rules with the given IDs (comma-separated list).
    * @param {{ ids: string }} args - Object containing the comma-separated IDs.
-   * @returns {Promise<any>} A promise resolving when the scanners are disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scanners are disabled.
    */
   disableScanners({ ids }) {
     return this.api.request('/pscan/action/disableScanners', { ids });
@@ -134,7 +136,7 @@ class Pscan {
    * Sets the alert threshold of the passive scanner with the given ID.
    * Accepted values: OFF, DEFAULT, LOW, MEDIUM, HIGH.
    * @param {{ id: string, alertThreshold: string }} args - Object containing the scanner ID and alert threshold.
-   * @returns {Promise<any>} A promise resolving when the threshold is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the threshold is set.
    */
   setScannerAlertThreshold({ id, alertThreshold }) {
     return this.api.request('/pscan/action/setScannerAlertThreshold', { id, alertThreshold });
@@ -143,7 +145,7 @@ class Pscan {
   /**
    * Sets the maximum number of alerts a passive scan rule should raise.
    * @param {{ maxAlerts: string }} args - Object containing the maximum alerts.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setMaxAlertsPerRule({ maxAlerts }) {
     return this.api.request('/pscan/action/setMaxAlertsPerRule', { maxAlerts });
@@ -151,7 +153,7 @@ class Pscan {
 
   /**
    * Disables all passive scan tags.
-   * @returns {Promise<any>} A promise resolving when all tags are disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all tags are disabled.
    */
   disableAllTags() {
     return this.api.request('/pscan/action/disableAllTags');
@@ -159,7 +161,7 @@ class Pscan {
 
   /**
    * Enables all passive scan tags.
-   * @returns {Promise<any>} A promise resolving when all tags are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all tags are enabled.
    */
   enableAllTags() {
     return this.api.request('/pscan/action/enableAllTags');
@@ -167,7 +169,7 @@ class Pscan {
 
   /**
    * Clears the passive scan queue.
-   * @returns {Promise<any>} A promise resolving when the queue is cleared.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the queue is cleared.
    */
   clearQueue() {
     return this.api.request('/pscan/action/clearQueue');

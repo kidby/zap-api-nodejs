@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Graphql {
   constructor(clientApi) {
     this.api = clientApi;
@@ -26,56 +28,56 @@ class Graphql {
 
   /**
    * Returns how arguments are currently specified.
-   * @returns {Promise<any>} A promise resolving with the current argument specification.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the current argument specification.
    */
   optionArgsType = () =>
     this.api.request('/graphql/view/optionArgsType');
 
   /**
    * Returns whether lenient maximum query generation depth is enabled.
-   * @returns {Promise<any>} A promise resolving with the lenient max query depth flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the lenient max query depth flag.
    */
   optionLenientMaxQueryDepthEnabled = () =>
     this.api.request('/graphql/view/optionLenientMaxQueryDepthEnabled');
 
   /**
    * Returns the current maximum additional query generation depth.
-   * @returns {Promise<any>} A promise resolving with the maximum additional query depth.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum additional query depth.
    */
   optionMaxAdditionalQueryDepth = () =>
     this.api.request('/graphql/view/optionMaxAdditionalQueryDepth');
 
   /**
    * Returns the current maximum arguments generation depth.
-   * @returns {Promise<any>} A promise resolving with the maximum arguments depth.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum arguments depth.
    */
   optionMaxArgsDepth = () =>
     this.api.request('/graphql/view/optionMaxArgsDepth');
 
   /**
    * Returns the current maximum query generation depth.
-   * @returns {Promise<any>} A promise resolving with the maximum query depth.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum query depth.
    */
   optionMaxQueryDepth = () =>
     this.api.request('/graphql/view/optionMaxQueryDepth');
 
   /**
    * Returns whether optional arguments are enabled.
-   * @returns {Promise<any>} A promise resolving with the optional arguments flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the optional arguments flag.
    */
   optionOptionalArgsEnabled = () =>
     this.api.request('/graphql/view/optionOptionalArgsEnabled');
 
   /**
    * Returns the current query split type.
-   * @returns {Promise<any>} A promise resolving with the query split type.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the query split type.
    */
   optionQuerySplitType = () =>
     this.api.request('/graphql/view/optionQuerySplitType');
 
   /**
    * Returns the current request method.
-   * @returns {Promise<any>} A promise resolving with the request method.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the request method.
    */
   optionRequestMethod = () =>
     this.api.request('/graphql/view/optionRequestMethod');
@@ -83,7 +85,7 @@ class Graphql {
   /**
    * Imports a GraphQL schema from a file.
    * @param {{ endurl: string, file: string }} args - Object containing the endpoint URL and file path.
-   * @returns {Promise<any>} A promise resolving with the import result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the import result.
    */
   importFile = ({ endurl, file }) =>
     this.api.request('/graphql/action/importFile', { endurl, file });
@@ -91,7 +93,7 @@ class Graphql {
   /**
    * Imports a GraphQL schema from a URL.
    * @param {{ endurl: string, url?: string }} args - Object containing the endpoint URL and (optionally) the schema URL.
-   * @returns {Promise<any>} A promise resolving with the import result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the import result.
    */
   importUrl = ({ endurl, url }) => {
     const params = { endurl };
@@ -102,7 +104,7 @@ class Graphql {
   /**
    * Sets how arguments are specified.
    * @param {{ string: string }} args - Object containing the argument type ("INLINE", "VARIABLES", or "BOTH").
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionArgsType = ({ string }) =>
     this.api.request('/graphql/action/setOptionArgsType', { String: string });
@@ -110,7 +112,7 @@ class Graphql {
   /**
    * Sets the level for which a single query is generated.
    * @param {{ string: string }} args - Object containing the query split type ("LEAF", "ROOT_FIELD", or "OPERATION").
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionQuerySplitType = ({ string }) =>
     this.api.request('/graphql/action/setOptionQuerySplitType', { String: string });
@@ -118,7 +120,7 @@ class Graphql {
   /**
    * Sets the request method.
    * @param {{ string: string }} args - Object containing the request method ("POST_JSON", "POST_GRAPHQL", or "GET").
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionRequestMethod = ({ string }) =>
     this.api.request('/graphql/action/setOptionRequestMethod', { String: string });
@@ -126,7 +128,7 @@ class Graphql {
   /**
    * Sets whether lenient maximum query generation depth is enabled.
    * @param {{ bool: string }} args - Object containing the boolean flag ("true" or "false").
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionLenientMaxQueryDepthEnabled = ({ bool }) =>
     this.api.request('/graphql/action/setOptionLenientMaxQueryDepthEnabled', { Boolean: bool });
@@ -134,7 +136,7 @@ class Graphql {
   /**
    * Sets the maximum additional query generation depth.
    * @param {{ integer: string }} args - Object containing the maximum additional depth.
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionMaxAdditionalQueryDepth = ({ integer }) =>
     this.api.request('/graphql/action/setOptionMaxAdditionalQueryDepth', { Integer: integer });
@@ -142,7 +144,7 @@ class Graphql {
   /**
    * Sets the maximum arguments generation depth.
    * @param {{ integer: string }} args - Object containing the maximum arguments depth.
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionMaxArgsDepth = ({ integer }) =>
     this.api.request('/graphql/action/setOptionMaxArgsDepth', { Integer: integer });
@@ -150,7 +152,7 @@ class Graphql {
   /**
    * Sets the maximum query generation depth.
    * @param {{ integer: string }} args - Object containing the maximum query depth.
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionMaxQueryDepth = ({ integer }) =>
     this.api.request('/graphql/action/setOptionMaxQueryDepth', { Integer: integer });
@@ -158,7 +160,7 @@ class Graphql {
   /**
    * Sets whether optional arguments are enabled.
    * @param {{ bool: string }} args - Object containing the boolean flag ("true" or "false").
-   * @returns {Promise<any>} A promise resolving when the option is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the option is set.
    */
   setOptionOptionalArgsEnabled = ({ bool }) =>
     this.api.request('/graphql/action/setOptionOptionalArgsEnabled', { Boolean: bool });
