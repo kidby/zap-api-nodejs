@@ -22,6 +22,14 @@
   ],
   "main": "src/index.js",
   "types": "index.d.ts",
+  "file": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "assets",
+    "CHANGELOG.md",
+    "index.d.ts"
+  ],
   "engines": {
     "node": ">=18"
   },
