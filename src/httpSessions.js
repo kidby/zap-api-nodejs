@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class HttpSessions {
   constructor(clientApi) {
     this.api = clientApi;
@@ -26,14 +28,14 @@ class HttpSessions {
 
   /**
    * Gets all the sites that have sessions.
-   * @returns {Promise<any>} A promise resolving with the list of sites.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the list of sites.
    */
   sites = () => this.api.request('/httpSessions/view/sites');
 
   /**
    * Gets the sessions for the given site, optionally returning only the specified session.
    * @param {{ site: string, session?: string }} args - Object containing the site and optional session name.
-   * @returns {Promise<any>} A promise resolving with the sessions.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the sessions.
    */
   sessions = ({ site, session }) => {
     const params = { site };
@@ -44,7 +46,7 @@ class HttpSessions {
   /**
    * Gets the name of the active session for the given site.
    * @param {{ site: string }} args - Object containing the site.
-   * @returns {Promise<any>} A promise resolving with the active session name.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the active session name.
    */
   activeSession = ({ site }) =>
     this.api.request('/httpSessions/view/activeSession', { site });
@@ -52,14 +54,14 @@ class HttpSessions {
   /**
    * Gets the session tokens for the given site.
    * @param {{ site: string }} args - Object containing the site.
-   * @returns {Promise<any>} A promise resolving with the session tokens.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the session tokens.
    */
   sessionTokens = ({ site }) =>
     this.api.request('/httpSessions/view/sessionTokens', { site });
 
   /**
    * Gets the default session tokens.
-   * @returns {Promise<any>} A promise resolving with the default session tokens.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the default session tokens.
    */
   defaultSessionTokens = () =>
     this.api.request('/httpSessions/view/defaultSessionTokens');
@@ -67,7 +69,7 @@ class HttpSessions {
   /**
    * Creates an empty session for the given site, optionally with a specified name.
    * @param {{ site: string, session?: string }} args - Object containing the site and optional session name.
-   * @returns {Promise<any>} A promise resolving when the session is created.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the session is created.
    */
   createEmptySession = ({ site, session }) => {
     const params = { site };
@@ -78,7 +80,7 @@ class HttpSessions {
   /**
    * Removes the session for the given site.
    * @param {{ site: string, session: string }} args - Object containing the site and session.
-   * @returns {Promise<any>} A promise resolving when the session is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the session is removed.
    */
   removeSession = ({ site, session }) =>
     this.api.request('/httpSessions/action/removeSession', { site, session });
@@ -86,7 +88,7 @@ class HttpSessions {
   /**
    * Sets the given session as active for the given site.
    * @param {{ site: string, session: string }} args - Object containing the site and session.
-   * @returns {Promise<any>} A promise resolving when the active session is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the active session is set.
    */
   setActiveSession = ({ site, session }) =>
     this.api.request('/httpSessions/action/setActiveSession', { site, session });
@@ -94,69 +96,76 @@ class HttpSessions {
   /**
    * Unsets the active session for the given site.
    * @param {{ site: string }} args - Object containing the site.
-   * @returns {Promise<any>} A promise resolving when the active session is unset.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the active session is unset.
    */
   unsetActiveSession = ({ site }) =>
     this.api.request('/httpSessions/action/unsetActiveSession', { site });
 
   /**
    * Adds a session token to the given site.
-   * @param {{ site: string, sessiontoken: string }} args - Object containing the site and session token.
-   * @returns {Promise<any>} A promise resolving when the session token is added.
+   * @param {{ site: string, sessionToken: string }} args - Object containing the site and session token.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the session token is added.
    */
-  addSessionToken = ({ site, sessiontoken }) =>
-    this.api.request('/httpSessions/action/addSessionToken', { site, sessionToken: sessiontoken });
+  addSessionToken = ({ site, sessionToken }) =>
+    this.api.request('/httpSessions/action/addSessionToken', { site, sessionToken: sessionToken });
 
   /**
    * Removes the session token from the given site.
-   * @param {{ site: string, sessiontoken: string }} args - Object containing the site and session token.
-   * @returns {Promise<any>} A promise resolving when the session token is removed.
+   * @param {{ site: string, sessionToken: string }} args - Object containing the site and session token.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the session token is removed.
    */
-  removeSessionToken = ({ site, sessiontoken }) =>
-    this.api.request('/httpSessions/action/removeSessionToken', { site, sessionToken: sessiontoken });
+  removeSessionToken = ({ site, sessionToken }) =>
+    this.api.request('/httpSessions/action/removeSessionToken', { site, sessionToken: sessionToken });
 
   /**
    * Sets the value of the session token for the given session and site.
-   * @param {{ site: string, session: string, sessiontoken: string, tokenvalue: string }} args - Object containing the site, session, session token, and token value.
-   * @returns {Promise<any>} A promise resolving when the token value is set.
+   * @param {{
+   *   site: string,
+   *   session: string,
+   *   sessionToken: string,
+   *   tokenValue: string,
+   * }} args - Object containing the site, session, session token, and token value.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the token value is set.
    */
-  setSessionTokenValue = ({ site, session, sessiontoken, tokenvalue }) =>
-    this.api.request('/httpSessions/action/setSessionTokenValue', { site, session, sessionToken: sessiontoken, tokenValue: tokenvalue });
+  setSessionTokenValue = ({ site, session, sessionToken, tokenValue }) =>
+    this.api.request('/httpSessions/action/setSessionTokenValue', { site, session, sessionToken, tokenValue });
 
   /**
    * Renames the session for the given site.
-   * @param {{ site: string, oldsessionname: string, newsessionname: string }} args - Object containing the site, old session name, and new session name.
-   * @returns {Promise<any>} A promise resolving when the session is renamed.
+   * @param {{
+   *   site: string,
+   *   oldsessionname: string,
+   *   newsessionname: string,
+   * }} args - Object containing the site, old session name, and new session name.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the session is renamed.
    */
   renameSession = ({ site, oldsessionname, newsessionname }) =>
     this.api.request('/httpSessions/action/renameSession', { site, oldSessionName: oldsessionname, newSessionName: newsessionname });
 
   /**
    * Adds a default session token with the given name and optional enabled state.
-   * @param {{ sessiontoken: string, tokenenabled?: string }} args - Object containing the session token and optional enabled flag.
-   * @returns {Promise<any>} A promise resolving when the default session token is added.
+   * @param {{ sessionToken: string, tokenEnabled?: string }} args - Object containing the session token and optional enabled flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the default session token is added.
    */
-  addDefaultSessionToken = ({ sessiontoken, tokenenabled }) => {
-    const params = { sessionToken: sessiontoken };
-    if (tokenenabled) params.tokenEnabled = tokenenabled;
-    return this.api.request('/httpSessions/action/addDefaultSessionToken', params);
+  addDefaultSessionToken = ({ sessionToken, tokenEnabled }) => {
+    return this.api.request('/httpSessions/action/addDefaultSessionToken', { sessionToken, tokenEnabled });
   };
 
   /**
    * Sets whether the default session token is enabled.
-   * @param {{ sessiontoken: string, tokenenabled: string }} args - Object containing the session token and enabled flag.
-   * @returns {Promise<any>} A promise resolving when the default session token enabled state is updated.
+   * @param {{ sessionToken: string, tokenEnabled: string }} args - Object containing the session token and enabled flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the default session token enabled state is updated.
    */
-  setDefaultSessionTokenEnabled = ({ sessiontoken, tokenenabled }) =>
-    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled', { sessionToken: sessiontoken, tokenEnabled: tokenenabled });
+  setDefaultSessionTokenEnabled = ({ sessionToken, tokenEnabled }) =>
+    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled', { sessionToken, tokenEnabled });
 
   /**
    * Removes the default session token with the given name.
-   * @param {{ sessiontoken: string }} args - Object containing the session token.
-   * @returns {Promise<any>} A promise resolving when the default session token is removed.
+   * @param {{ sessionToken: string }} args - Object containing the session token.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the default session token is removed.
    */
-  removeDefaultSessionToken = ({ sessiontoken }) =>
-    this.api.request('/httpSessions/action/removeDefaultSessionToken', { sessionToken: sessiontoken });
+  removeDefaultSessionToken = ({ sessionToken }) =>
+    this.api.request('/httpSessions/action/removeDefaultSessionToken', { sessionToken });
 }
 
 module.exports = HttpSessions;

@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class AccessControl {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +29,7 @@ class AccessControl {
   /**
    * Gets the Access Control scan progress (percentage integer) for the given context ID.
    * @param {{ contextId: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getScanProgress = ({ contextId }) =>
     this.api.request('/accessControl/view/getScanProgress', { contextId });
@@ -35,7 +37,7 @@ class AccessControl {
   /**
    * Gets the Access Control scan status (description string) for the given context ID.
    * @param {{ contextId: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getScanStatus = ({ contextId }) =>
     this.api.request('/accessControl/view/getScanStatus', { contextId });
@@ -49,7 +51,7 @@ class AccessControl {
    *   raiseAlert: string,
    *   alertRiskLevel: string,
    * }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   scan = ({ contextId, userId, scanAsUnAuthUser, raiseAlert, alertRiskLevel }) =>
     this.api.request('/accessControl/action/scan', { contextId, userId, scanAsUnAuthUser, raiseAlert, alertRiskLevel });
@@ -57,9 +59,9 @@ class AccessControl {
   /**
    * Generates an Access Control report for the given context ID and saves it based on the provided filename.
    * @param {{ contextId: string, fileName: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
-  writeHTMLreport = ({ contextId, fileName }) =>
+  writeHtmlReport = ({ contextId, fileName }) =>
     this.api.request('/accessControl/action/writeHTMLreport', { contextId, fileName });
 }
 

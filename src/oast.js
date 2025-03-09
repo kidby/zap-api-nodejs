@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Oast {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +29,7 @@ class Oast {
   /**
    * Gets the service used with the active scanner, if any.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with the active scan service.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the active scan service.
    */
   getActiveScanService = () =>
     this.api.request('/oast/view/getActiveScanService/');
@@ -35,7 +37,7 @@ class Oast {
   /**
    * Gets all the services.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with all the services.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with all the services.
    */
   getServices = () =>
     this.api.request('/oast/view/getServices/');
@@ -43,7 +45,7 @@ class Oast {
   /**
    * Gets the BOAST options.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with the BOAST options.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the BOAST options.
    */
   getBoastOptions = () =>
     this.api.request('/oast/view/getBoastOptions/');
@@ -51,7 +53,7 @@ class Oast {
   /**
    * Gets the Callback options.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with the callback options.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the callback options.
    */
   getCallbackOptions = () =>
     this.api.request('/oast/view/getCallbackOptions/');
@@ -59,7 +61,7 @@ class Oast {
   /**
    * Gets the Interactsh options.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with the Interactsh options.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the Interactsh options.
    */
   getInteractshOptions = () =>
     this.api.request('/oast/view/getInteractshOptions/');
@@ -67,7 +69,7 @@ class Oast {
   /**
    * Gets the number of days the OAST records will be kept for.
    * This component is optional and therefore the API will only work if it is installed.
-   * @returns {Promise<any>} A promise that resolves with the number of days to keep records.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves with the number of days to keep records.
    */
   getDaysToKeepRecords = () =>
     this.api.request('/oast/view/getDaysToKeepRecords/');
@@ -76,7 +78,7 @@ class Oast {
    * Sets the service used with the active scanner.
    * This component is optional and therefore the API will only work if it is installed.
    * @param {{ name: string }} args - Object containing the service name.
-   * @returns {Promise<any>} A promise that resolves when the active scan service is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the active scan service is set.
    */
   setActiveScanService = ({ name }) =>
     this.api.request('/oast/action/setActiveScanService/', { name });
@@ -85,7 +87,7 @@ class Oast {
    * Sets the BOAST options.
    * This component is optional and therefore the API will only work if it is installed.
    * @param {{ server: string, pollinsecs: string }} args - Object containing the server URL and polling frequency.
-   * @returns {Promise<any>} A promise that resolves when the BOAST options are set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the BOAST options are set.
    */
   setBoastOptions = ({ server, pollinsecs }) =>
     this.api.request('/oast/action/setBoastOptions/', { server, pollInSecs: pollinsecs });
@@ -94,7 +96,7 @@ class Oast {
    * Sets the Callback options.
    * This component is optional and therefore the API will only work if it is installed.
    * @param {{ localaddress: string, remoteaddress: string, port: string }} args - Object containing the local address, remote address, and port.
-   * @returns {Promise<any>} A promise that resolves when the callback options are set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the callback options are set.
    */
   setCallbackOptions = ({ localaddress, remoteaddress, port }) =>
     this.api.request('/oast/action/setCallbackOptions/', { localAddress: localaddress, remoteAddress: remoteaddress, port });
@@ -102,8 +104,12 @@ class Oast {
   /**
    * Sets the Interactsh options.
    * This component is optional and therefore the API will only work if it is installed.
-   * @param {{ server: string, pollinsecs: string, authtoken: string }} args - Object containing the server URL, polling frequency, and authentication token.
-   * @returns {Promise<any>} A promise that resolves when the Interactsh options are set.
+   * @param {{
+   *   server: string,
+   *   pollinsecs: string,
+   *   authtoken: string,
+   * }} args - Object containing the server URL, polling frequency, and authentication token.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the Interactsh options are set.
    */
   setInteractshOptions = ({ server, pollinsecs, authtoken }) =>
     this.api.request('/oast/action/setInteractshOptions/', { server, pollInSecs: pollinsecs, authToken: authtoken });
@@ -112,7 +118,7 @@ class Oast {
    * Sets the number of days the OAST records will be kept for.
    * This component is optional and therefore the API will only work if it is installed.
    * @param {{ days: string }} args - Object containing the number of days.
-   * @returns {Promise<any>} A promise that resolves when the days to keep records is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise that resolves when the days to keep records is set.
    */
   setDaysToKeepRecords = ({ days }) =>
     this.api.request('/oast/action/setDaysToKeepRecords/', { days });

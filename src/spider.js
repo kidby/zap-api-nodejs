@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Spider {
   constructor(clientApi) {
     this.api = clientApi;
@@ -29,7 +31,7 @@ class Spider {
    *
    * @param {{ scanId?: string }} [args={}] - Object containing:
    *   - scanId: (Optional) The ID of the scan.
-   * @returns {Promise<any>} A promise resolving with the scan status.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the scan status.
    */
   status = ({ scanId } = {}) => {
     const params = {};
@@ -42,7 +44,7 @@ class Spider {
    *
    * @param {{ scanId?: string }} [args={}] - Object containing:
    *   - scanId: (Optional) The ID of the scan.
-   * @returns {Promise<any>} A promise resolving with the partial results.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the partial results.
    */
   results = ({ scanId } = {}) => {
     const params = {};
@@ -55,7 +57,7 @@ class Spider {
    *
    * @param {{ scanId: string }} args - Object containing:
    *   - scanId: The ID of the scan.
-   * @returns {Promise<any>} A promise resolving with the full results.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the full results.
    */
   fullResults = ({ scanId }) =>
     this.api.request('/spider/view/fullResults', { scanId });
@@ -63,7 +65,7 @@ class Spider {
   /**
    * Retrieves a list of all spider scans.
    *
-   * @returns {Promise<any>} A promise resolving with the list of scans.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the list of scans.
    */
   scans = () =>
     this.api.request('/spider/view/scans');
@@ -71,7 +73,7 @@ class Spider {
   /**
    * Retrieves the regexes of URLs excluded from spider scans.
    *
-   * @returns {Promise<any>} A promise resolving with the exclusion regexes.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the exclusion regexes.
    */
   excludedFromScan = () =>
     this.api.request('/spider/view/excludedFromScan');
@@ -79,7 +81,7 @@ class Spider {
   /**
    * Returns a list of unique URLs from the history table added by the spider.
    *
-   * @returns {Promise<any>} A promise resolving with the unique URLs.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the unique URLs.
    */
   allUrls = () =>
     this.api.request('/spider/view/allUrls');
@@ -89,7 +91,7 @@ class Spider {
    *
    * @param {{ scanId?: string }} [args={}] - Object containing:
    *   - scanId: (Optional) The ID of the scan.
-   * @returns {Promise<any>} A promise resolving with the list of added nodes.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the list of added nodes.
    */
   addedNodes = ({ scanId } = {}) => {
     const params = {};
@@ -100,7 +102,7 @@ class Spider {
   /**
    * Gets all domains that are always in scope.
    *
-   * @returns {Promise<any>} A promise resolving with the domains.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the domains.
    */
   domainsAlwaysInScope = () =>
     this.api.request('/spider/view/domainsAlwaysInScope');
@@ -108,7 +110,7 @@ class Spider {
   /**
    * Returns the option for domains always in scope.
    *
-   * @returns {Promise<any>} A promise resolving with the option.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the option.
    */
   optionDomainsAlwaysInScope = () =>
     this.api.request('/spider/view/optionDomainsAlwaysInScope');
@@ -116,7 +118,7 @@ class Spider {
   /**
    * Returns whether domains always in scope are enabled.
    *
-   * @returns {Promise<any>} A promise resolving with the enabled flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the enabled flag.
    */
   optionDomainsAlwaysInScopeEnabled = () =>
     this.api.request('/spider/view/optionDomainsAlwaysInScopeEnabled');
@@ -124,7 +126,7 @@ class Spider {
   /**
    * Gets the parameter handling mode for the spider.
    *
-   * @returns {Promise<any>} A promise resolving with the parameter handling mode.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parameter handling mode.
    */
   optionHandleParameters = () =>
     this.api.request('/spider/view/optionHandleParameters');
@@ -132,7 +134,7 @@ class Spider {
   /**
    * Gets the maximum number of child nodes per node that can be crawled.
    *
-   * @returns {Promise<any>} A promise resolving with the maximum children setting.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum children setting.
    */
   optionMaxChildren = () =>
     this.api.request('/spider/view/optionMaxChildren');
@@ -140,7 +142,7 @@ class Spider {
   /**
    * Gets the maximum crawl depth (0 for unlimited).
    *
-   * @returns {Promise<any>} A promise resolving with the maximum crawl depth.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum crawl depth.
    */
   optionMaxDepth = () =>
     this.api.request('/spider/view/optionMaxDepth');
@@ -148,7 +150,7 @@ class Spider {
   /**
    * Gets the maximum duration (in minutes) that the spider can run.
    *
-   * @returns {Promise<any>} A promise resolving with the maximum duration.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum duration.
    */
   optionMaxDuration = () =>
     this.api.request('/spider/view/optionMaxDuration');
@@ -156,7 +158,7 @@ class Spider {
   /**
    * Gets the maximum parse size in bytes for responses.
    *
-   * @returns {Promise<any>} A promise resolving with the maximum parse size.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum parse size.
    */
   optionMaxParseSizeBytes = () =>
     this.api.request('/spider/view/optionMaxParseSizeBytes');
@@ -164,7 +166,7 @@ class Spider {
   /**
    * Gets the maximum number of scans that can appear in the UI.
    *
-   * @returns {Promise<any>} A promise resolving with the maximum UI scans.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the maximum UI scans.
    */
   optionMaxScansInUI = () =>
     this.api.request('/spider/view/optionMaxScansInUI');
@@ -172,7 +174,7 @@ class Spider {
   /**
    * Gets the current skip URL string used by the spider.
    *
-   * @returns {Promise<any>} A promise resolving with the skip URL string.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the skip URL string.
    */
   optionSkipURLString = () =>
     this.api.request('/spider/view/optionSkipURLString');
@@ -180,7 +182,7 @@ class Spider {
   /**
    * Gets the number of threads the spider is allowed to use.
    *
-   * @returns {Promise<any>} A promise resolving with the thread count.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the thread count.
    */
   optionThreadCount = () =>
     this.api.request('/spider/view/optionThreadCount');
@@ -188,7 +190,7 @@ class Spider {
   /**
    * Gets the user agent string used by the spider.
    *
-   * @returns {Promise<any>} A promise resolving with the user agent string.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the user agent string.
    */
   optionUserAgent = () =>
     this.api.request('/spider/view/optionUserAgent');
@@ -196,7 +198,7 @@ class Spider {
   /**
    * Checks whether the spider accepts cookies.
    *
-   * @returns {Promise<any>} A promise resolving with the cookie acceptance flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the cookie acceptance flag.
    */
   optionAcceptCookies = () =>
     this.api.request('/spider/view/optionAcceptCookies');
@@ -204,7 +206,7 @@ class Spider {
   /**
    * Checks whether the spider handles OData parameters.
    *
-   * @returns {Promise<any>} A promise resolving with the OData handling flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the OData handling flag.
    */
   optionHandleODataParametersVisited = () =>
     this.api.request('/spider/view/optionHandleODataParametersVisited');
@@ -212,7 +214,7 @@ class Spider {
   /**
    * Checks whether the spider parses comments.
    *
-   * @returns {Promise<any>} A promise resolving with the parse comments flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse comments flag.
    */
   optionParseComments = () =>
     this.api.request('/spider/view/optionParseComments');
@@ -220,7 +222,7 @@ class Spider {
   /**
    * Checks whether the spider parses .ds_store files.
    *
-   * @returns {Promise<any>} A promise resolving with the parse .ds_store flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse .ds_store flag.
    */
   optionParseDsStore = () =>
     this.api.request('/spider/view/optionParseDsStore');
@@ -228,7 +230,7 @@ class Spider {
   /**
    * Checks whether the spider parses Git metadata.
    *
-   * @returns {Promise<any>} A promise resolving with the parse Git flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse Git flag.
    */
   optionParseGit = () =>
     this.api.request('/spider/view/optionParseGit');
@@ -236,7 +238,7 @@ class Spider {
   /**
    * Checks whether the spider parses robots.txt.
    *
-   * @returns {Promise<any>} A promise resolving with the parse robots.txt flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse robots.txt flag.
    */
   optionParseRobotsTxt = () =>
     this.api.request('/spider/view/optionParseRobotsTxt');
@@ -244,7 +246,7 @@ class Spider {
   /**
    * Checks whether the spider parses SVN entries.
    *
-   * @returns {Promise<any>} A promise resolving with the parse SVN entries flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse SVN entries flag.
    */
   optionParseSVNEntries = () =>
     this.api.request('/spider/view/optionParseSVNEntries');
@@ -252,7 +254,7 @@ class Spider {
   /**
    * Checks whether the spider parses sitemap.xml files.
    *
-   * @returns {Promise<any>} A promise resolving with the parse sitemap.xml flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the parse sitemap.xml flag.
    */
   optionParseSitemapXml = () =>
     this.api.request('/spider/view/optionParseSitemapXml');
@@ -260,7 +262,7 @@ class Spider {
   /**
    * Checks whether the spider should POST forms.
    *
-   * @returns {Promise<any>} A promise resolving with the POST form flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the POST form flag.
    */
   optionPostForm = () =>
     this.api.request('/spider/view/optionPostForm');
@@ -268,7 +270,7 @@ class Spider {
   /**
    * Checks whether the spider processes forms.
    *
-   * @returns {Promise<any>} A promise resolving with the process form flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the process form flag.
    */
   optionProcessForm = () =>
     this.api.request('/spider/view/optionProcessForm');
@@ -276,7 +278,7 @@ class Spider {
   /**
    * Checks whether the 'Referer' header is sent during spidering.
    *
-   * @returns {Promise<any>} A promise resolving with the send Referer header flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the send Referer header flag.
    */
   optionSendRefererHeader = () =>
     this.api.request('/spider/view/optionSendRefererHeader');
@@ -284,7 +286,7 @@ class Spider {
   /**
    * Checks whether the advanced dialog is shown in the spider UI.
    *
-   * @returns {Promise<any>} A promise resolving with the advanced dialog flag.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the advanced dialog flag.
    */
   optionShowAdvancedDialog = () =>
     this.api.request('/spider/view/optionShowAdvancedDialog');
@@ -294,7 +296,7 @@ class Spider {
    *
    * @param {{ string: string }} args - Object containing:
    *   - string: The parameter handling mode.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionHandleParameters = ({ string }) =>
     this.api.request('/spider/action/setOptionHandleParameters', { String: string });
@@ -304,7 +306,7 @@ class Spider {
    *
    * @param {{ string: string }} args - Object containing:
    *   - string: The skip URL string or pattern.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionSkipURLString = ({ string }) =>
     this.api.request('/spider/action/setOptionSkipURLString', { String: string });
@@ -314,7 +316,7 @@ class Spider {
    *
    * @param {{ string: string }} args - Object containing:
    *   - string: The user agent string.
-   * @returns {Promise<any>} A promise resolving when the user agent is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the user agent is set.
    */
   setOptionUserAgent = ({ string }) =>
     this.api.request('/spider/action/setOptionUserAgent', { String: string });
@@ -324,7 +326,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to accept cookies, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionAcceptCookies = ({ bool }) =>
     this.api.request('/spider/action/setOptionAcceptCookies', { Boolean: bool });
@@ -334,7 +336,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to handle OData parameters, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionHandleODataParametersVisited = ({ bool }) =>
     this.api.request('/spider/action/setOptionHandleODataParametersVisited', { Boolean: bool });
@@ -344,7 +346,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The maximum number of child nodes.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionMaxChildren = ({ integer }) =>
     this.api.request('/spider/action/setOptionMaxChildren', { Integer: integer });
@@ -354,7 +356,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The maximum crawl depth.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionMaxDepth = ({ integer }) =>
     this.api.request('/spider/action/setOptionMaxDepth', { Integer: integer });
@@ -364,7 +366,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The maximum duration in minutes.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionMaxDuration = ({ integer }) =>
     this.api.request('/spider/action/setOptionMaxDuration', { Integer: integer });
@@ -374,7 +376,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The maximum parse size in bytes.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionMaxParseSizeBytes = ({ integer }) =>
     this.api.request('/spider/action/setOptionMaxParseSizeBytes', { Integer: integer });
@@ -384,7 +386,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The maximum number of scans.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionMaxScansInUI = ({ integer }) =>
     this.api.request('/spider/action/setOptionMaxScansInUI', { Integer: integer });
@@ -394,7 +396,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse comments, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseComments = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseComments', { Boolean: bool });
@@ -404,7 +406,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse .ds_store files, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseDsStore = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseDsStore', { Boolean: bool });
@@ -414,7 +416,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse Git metadata, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseGit = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseGit', { Boolean: bool });
@@ -424,7 +426,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse robots.txt, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseRobotsTxt = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseRobotsTxt', { Boolean: bool });
@@ -434,7 +436,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse SVN entries, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseSVNEntries = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseSVNEntries', { Boolean: bool });
@@ -444,7 +446,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to parse sitemap.xml files, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionParseSitemapXml = ({ bool }) =>
     this.api.request('/spider/action/setOptionParseSitemapXml', { Boolean: bool });
@@ -454,7 +456,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to POST forms, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionPostForm = ({ bool }) =>
     this.api.request('/spider/action/setOptionPostForm', { Boolean: bool });
@@ -464,7 +466,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to process forms, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionProcessForm = ({ bool }) =>
     this.api.request('/spider/action/setOptionProcessForm', { Boolean: bool });
@@ -474,7 +476,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to send the 'Referer' header, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionSendRefererHeader = ({ bool }) =>
     this.api.request('/spider/action/setOptionSendRefererHeader', { Boolean: bool });
@@ -484,7 +486,7 @@ class Spider {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to show the advanced dialog, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionShowAdvancedDialog = ({ bool }) =>
     this.api.request('/spider/action/setOptionShowAdvancedDialog', { Boolean: bool });
@@ -494,7 +496,7 @@ class Spider {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The number of threads.
-   * @returns {Promise<any>} A promise resolving when the thread count is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the thread count is set.
    */
   setOptionThreadCount = ({ integer }) =>
     this.api.request('/spider/action/setOptionThreadCount', { Integer: integer });
@@ -516,7 +518,7 @@ class Spider {
    *   - maxChildren: (Optional) Maximum children per node.
    *   - recurse: (Optional) Whether to recurse.
    *   - subtreeOnly: (Optional) Whether to limit the scan to a subtree.
-   * @returns {Promise<any>} A promise resolving with the scan result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the scan result.
    */
   scanAsUser = ({ contextId, userId, url, maxChildren, recurse, subtreeOnly }) =>
     this.api.request('/spider/action/scanAsUser', { contextId, userId, url, maxChildren, recurse, subtreeOnly });
@@ -531,7 +533,7 @@ class Spider {
    *   contextName?: string,
    *   subtreeOnly?: string
    * }} [args={}] - Object containing spider options.
-   * @returns {Promise<any>} A promise resolving with the scan result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the scan result.
    */
   scan = ({ url, maxChildren, recurse, contextName, subtreeOnly } = {}) =>
     this.api.request('/spider/action/scan', { url, maxChildren, recurse, contextName, subtreeOnly });
@@ -540,7 +542,7 @@ class Spider {
    * Pauses a running spider scan.
    *
    * @param {{ scanId: string }} args - Object containing the scan ID.
-   * @returns {Promise<any>} A promise resolving when the scan is paused.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scan is paused.
    */
   pause = ({ scanId }) =>
     this.api.request('/spider/action/pause', { scanId });
@@ -549,7 +551,7 @@ class Spider {
    * Resumes a paused spider scan.
    *
    * @param {{ scanId: string }} args - Object containing the scan ID.
-   * @returns {Promise<any>} A promise resolving when the scan is resumed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scan is resumed.
    */
   resume = ({ scanId }) =>
     this.api.request('/spider/action/resume', { scanId });
@@ -558,7 +560,7 @@ class Spider {
    * Stops a running spider scan.
    *
    * @param {{ scanId?: string }} [args={}] - Object optionally containing the scan ID.
-   * @returns {Promise<any>} A promise resolving when the scan is stopped.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scan is stopped.
    */
   stop = ({ scanId } = {}) => {
     const params = {};
@@ -570,7 +572,7 @@ class Spider {
    * Removes a spider scan by its ID.
    *
    * @param {{ scanId: string }} args - Object containing the scan ID.
-   * @returns {Promise<any>} A promise resolving when the scan is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the scan is removed.
    */
   removeScan = ({ scanId }) =>
     this.api.request('/spider/action/removeScan', { scanId });
@@ -578,7 +580,7 @@ class Spider {
   /**
    * Pauses all ongoing spider scans.
    *
-   * @returns {Promise<any>} A promise resolving when all scans are paused.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scans are paused.
    */
   pauseAllScans = () =>
     this.api.request('/spider/action/pauseAllScans');
@@ -586,7 +588,7 @@ class Spider {
   /**
    * Resumes all paused spider scans.
    *
-   * @returns {Promise<any>} A promise resolving when all scans are resumed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scans are resumed.
    */
   resumeAllScans = () =>
     this.api.request('/spider/action/resumeAllScans');
@@ -594,7 +596,7 @@ class Spider {
   /**
    * Stops all ongoing spider scans.
    *
-   * @returns {Promise<any>} A promise resolving when all scans are stopped.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scans are stopped.
    */
   stopAllScans = () =>
     this.api.request('/spider/action/stopAllScans');
@@ -602,7 +604,7 @@ class Spider {
   /**
    * Removes all spider scans.
    *
-   * @returns {Promise<any>} A promise resolving when all scans are removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all scans are removed.
    */
   removeAllScans = () =>
     this.api.request('/spider/action/removeAllScans');
@@ -610,7 +612,7 @@ class Spider {
   /**
    * Clears the regexes of URLs excluded from spider scans.
    *
-   * @returns {Promise<any>} A promise resolving when the exclusions are cleared.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the exclusions are cleared.
    */
   clearExcludedFromScan = () =>
     this.api.request('/spider/action/clearExcludedFromScan');
@@ -620,7 +622,7 @@ class Spider {
    *
    * @param {{ regex: string }} args - Object containing:
    *   - regex: The regex pattern.
-   * @returns {Promise<any>} A promise resolving when the exclusion is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the exclusion is added.
    */
   excludeFromScan = ({ regex }) =>
     this.api.request('/spider/action/excludeFromScan', { regex });
@@ -636,7 +638,7 @@ class Spider {
    *   - value: The domain or regex.
    *   - isRegex: (Optional) True if value is a regex.
    *   - isEnabled: (Optional) True if the domain is enabled.
-   * @returns {Promise<any>} A promise resolving when the domain is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the domain is added.
    */
   addDomainAlwaysInScope = ({ value, isRegex, isEnabled }) =>
     this.api.request('/spider/action/addDomainAlwaysInScope', { value, isRegex, isEnabled });
@@ -654,7 +656,7 @@ class Spider {
    *   - value: (Optional) The new domain or regex.
    *   - isRegex: (Optional) True if value is a regex.
    *   - isEnabled: (Optional) True if the domain should be enabled.
-   * @returns {Promise<any>} A promise resolving when the domain is modified.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the domain is modified.
    */
   modifyDomainAlwaysInScope = ({ idx, value, isRegex, isEnabled }) =>
     this.api.request('/spider/action/modifyDomainAlwaysInScope', { idx, value, isRegex, isEnabled });
@@ -664,7 +666,7 @@ class Spider {
    *
    * @param {{ idx: number }} args - Object containing:
    *   - idx: The index of the domain to remove.
-   * @returns {Promise<any>} A promise resolving when the domain is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the domain is removed.
    */
   removeDomainAlwaysInScope = ({ idx }) =>
     this.api.request('/spider/action/removeDomainAlwaysInScope', { idx });
@@ -672,7 +674,7 @@ class Spider {
   /**
    * Enables all domains that are always in scope.
    *
-   * @returns {Promise<any>} A promise resolving when all domains are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all domains are enabled.
    */
   enableAllDomainsAlwaysInScope = () =>
     this.api.request('/spider/action/enableAllDomainsAlwaysInScope');
@@ -680,7 +682,7 @@ class Spider {
   /**
    * Disables all domains that are always in scope.
    *
-   * @returns {Promise<any>} A promise resolving when all domains are disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when all domains are disabled.
    */
   disableAllDomainsAlwaysInScope = () =>
     this.api.request('/spider/action/disableAllDomainsAlwaysInScope');

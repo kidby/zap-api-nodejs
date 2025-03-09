@@ -16,10 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * Class for managing authentication-related API requests for ZAP Proxy.
- * @param {object} clientApi - The client API object for making requests.
- */
+
+'use strict';
+
+/// <reference path="../index.d.ts" />
+
 class Authentication {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +28,7 @@ class Authentication {
 
   /**
    * Gets the names of the supported authentication methods.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getSupportedAuthenticationMethods = () =>
     this.api.request('/authentication/view/getSupportedAuthenticationMethods');
@@ -35,7 +36,7 @@ class Authentication {
   /**
    * Gets the configuration parameters for the specified authentication method.
    * @param {{ authMethodName: string }} args - Object containing the authentication method name.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getAuthenticationMethodConfigParams = ({ authMethodName }) =>
     this.api.request('/authentication/view/getAuthenticationMethodConfigParams', { authMethodName });
@@ -43,7 +44,7 @@ class Authentication {
   /**
    * Gets the authentication method for the context with the given ID.
    * @param {{ contextId: string }} args - Object containing the context ID.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getAuthenticationMethod = ({ contextId }) =>
     this.api.request('/authentication/view/getAuthenticationMethod', { contextId });
@@ -51,7 +52,7 @@ class Authentication {
   /**
    * Gets the logged in indicator for the context with the given ID.
    * @param {{ contextId: string }} args - Object containing the context ID.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getLoggedInIndicator = ({ contextId }) =>
     this.api.request('/authentication/view/getLoggedInIndicator', { contextId });
@@ -59,7 +60,7 @@ class Authentication {
   /**
    * Gets the logged out indicator for the context with the given ID.
    * @param {{ contextId: string }} args - Object containing the context ID.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   getLoggedOutIndicator = ({ contextId }) =>
     this.api.request('/authentication/view/getLoggedOutIndicator', { contextId });
@@ -68,20 +69,13 @@ class Authentication {
    * Sets the authentication method for the context.
    * @param {{
    *   contextId: string,
-   *   authmethodname: string,
-   *   authmethodconfigparams?: string
+   *   authMethodName: string,
+   *   authMethodConfigParams?: string
    * }} args - Object containing contextId, authentication method name, and optional configuration parameters.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
-  setAuthenticationMethod = (args) => {
-    const params = {
-      contextId: args.contextId,
-      authMethodName: args.authmethodname,
-    };
-    if (args.authmethodconfigparams) {
-      params.authMethodConfigParams = args.authmethodconfigparams;
-    }
-    return this.api.request('/authentication/action/setAuthenticationMethod', params);
+  setAuthenticationMethod = ({ contextId, authMethodName, authMethodConfigParams }) => {
+    return this.api.request('/authentication/action/setAuthenticationMethod', { contextId, authMethodName, authMethodConfigParams });
   };
 
   /**
@@ -90,12 +84,9 @@ class Authentication {
    *   contextId: string,
    *   loggedinindicatorregex: string
    * }} args - Object containing the context ID and logged in indicator regex.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
-  setLoggedInIndicator = ({
-                            contextId,
-                            loggedInIndicatorRegex,
-                          }) =>
+  setLoggedInIndicator = ({ contextId, loggedInIndicatorRegex }) =>
     this.api.request('/authentication/action/setLoggedInIndicator', {
       contextId,
       loggedInIndicatorRegex,
@@ -107,12 +98,9 @@ class Authentication {
    *   contextId: string,
    *   loggedoutindicatorregex: string
    * }} args - Object containing the context ID and logged out indicator regex.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
-  setLoggedOutIndicator = ({
-                             contextId,
-                             loggedOutIndicatorRegex,
-                           }) =>
+  setLoggedOutIndicator = ({ contextId, loggedOutIndicatorRegex }) =>
     this.api.request('/authentication/action/setLoggedOutIndicator', {
       contextId,
       loggedOutIndicatorRegex,

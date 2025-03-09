@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Wappalyzer {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class Wappalyzer {
    * Lists all the sites recognized by the wappalyzer addon.
    * This component is optional and therefore the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the recognized sites.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the recognized sites.
    */
   listSites = () =>
     this.api.request('/wappalyzer/view/listSites');
@@ -37,7 +39,7 @@ class Wappalyzer {
    * Lists all sites and their associated applications (technologies).
    * This component is optional and therefore the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with sites and their technologies.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with sites and their technologies.
    */
   listAll = () =>
     this.api.request('/wappalyzer/view/listAll');
@@ -48,7 +50,7 @@ class Wappalyzer {
    *
    * @param {{ site: string }} args - Object containing:
    *   - site: The site URL.
-   * @returns {Promise<any>} A promise resolving with the site's technologies.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the site's technologies.
    */
   listSite = ({ site }) =>
     this.api.request('/wappalyzer/view/listSite', { site });

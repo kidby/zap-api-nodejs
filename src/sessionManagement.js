@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class SessionManagement {
   constructor(clientApi) {
     this.api = clientApi;

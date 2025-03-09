@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Websocket {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class Websocket {
    * Returns all the registered web socket channels.
    * This component is optional and therefore the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the registered channels.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the registered channels.
    */
   channels = () =>
     this.api.request('/websocket/view/channels');
@@ -40,7 +42,7 @@ class Websocket {
    * @param {{ channelId: string, messageId: string }} args - Object containing:
    *   - channelId: The channel identifier.
    *   - messageId: The message identifier.
-   * @returns {Promise<any>} A promise resolving with the message details.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the message details.
    */
   message = ({ channelId, messageId }) =>
     this.api.request('/websocket/view/message', { channelId, messageId });
@@ -54,7 +56,7 @@ class Websocket {
    *   - start: (Optional) The offset to start returning messages from.
    *   - count: (Optional) The number of messages to return.
    *   - payloadPreviewLength: (Optional) The maximum number of bytes to return for payload contents.
-   * @returns {Promise<any>} A promise resolving with the messages.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the messages.
    */
   messages = ({ channelId, start, count, payloadPreviewLength } = {}) =>
     this.api.request('/websocket/view/messages', { channelId, start, count, payloadPreviewLength });
@@ -63,7 +65,7 @@ class Websocket {
    * Returns a text representation of an intercepted websockets message.
    * This component is optional and therefore the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the intercepted message.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the intercepted message.
    */
   breakTextMessage = () =>
     this.api.request('/websocket/view/breakTextMessage');
@@ -76,7 +78,7 @@ class Websocket {
    *   - channelId: The channel identifier.
    *   - outgoing: 'True' to send to server, 'False' to send to client.
    *   - message: The message to send.
-   * @returns {Promise<any>} A promise resolving when the message is sent.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the message is sent.
    */
   sendTextMessage = ({ channelId, outgoing, message }) =>
     this.api.request('/websocket/action/sendTextMessage', { channelId, outgoing, message });
@@ -88,7 +90,7 @@ class Websocket {
    * @param {{ message: string, outgoing: string }} args - Object containing:
    *   - message: The message text.
    *   - outgoing: Whether the message is outgoing.
-   * @returns {Promise<any>} A promise resolving when the message is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the message is set.
    */
   setBreakTextMessage = ({ message, outgoing }) =>
     this.api.request('/websocket/action/setBreakTextMessage', { message, outgoing });

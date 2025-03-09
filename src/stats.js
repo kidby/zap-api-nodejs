@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Stats {
   constructor(clientApi) {
     this.api = clientApi;
@@ -29,7 +31,7 @@ class Stats {
    *
    * @param {{ keyPrefix?: string }} [args={}] - Object containing:
    *   - keyPrefix: (Optional) The key prefix to filter by.
-   * @returns {Promise<any>} A promise resolving with the statistics.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the statistics.
    */
   stats = ({ keyPrefix } = {}) => {
     return this.api.request('/stats/view/stats', { keyPrefix });
@@ -40,7 +42,7 @@ class Stats {
    *
    * @param {{ keyPrefix?: string }} [args={}] - Object containing:
    *   - keyPrefix: (Optional) The key prefix to filter by.
-   * @returns {Promise<any>} A promise resolving with all site statistics.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with all site statistics.
    */
   allSitesStats = ({ keyPrefix } = {}) => {
     return this.api.request('/stats/view/allSitesStats', { keyPrefix });
@@ -52,7 +54,7 @@ class Stats {
    * @param {{ site: string, keyPrefix?: string }} args - Object containing:
    *   - site: The site to get statistics for.
    *   - keyPrefix: (Optional) The key prefix to filter by.
-   * @returns {Promise<any>} A promise resolving with the site statistics.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the site statistics.
    */
   siteStats = ({ site, keyPrefix }) => {
     return this.api.request('/stats/view/siteStats', { site, keyPrefix });
@@ -61,7 +63,7 @@ class Stats {
   /**
    * Gets the Statsd service hostname.
    *
-   * @returns {Promise<any>} A promise resolving with the Statsd hostname.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Statsd hostname.
    */
   optionStatsdHost = () =>
     this.api.request('/stats/view/optionStatsdHost');
@@ -69,7 +71,7 @@ class Stats {
   /**
    * Gets the Statsd service port.
    *
-   * @returns {Promise<any>} A promise resolving with the Statsd port.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Statsd port.
    */
   optionStatsdPort = () =>
     this.api.request('/stats/view/optionStatsdPort');
@@ -77,7 +79,7 @@ class Stats {
   /**
    * Gets the prefix to be applied to all stats sent to the configured Statsd service.
    *
-   * @returns {Promise<any>} A promise resolving with the Statsd prefix.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the Statsd prefix.
    */
   optionStatsdPrefix = () =>
     this.api.request('/stats/view/optionStatsdPrefix');
@@ -85,7 +87,7 @@ class Stats {
   /**
    * Checks if in-memory statistics are enabled.
    *
-   * @returns {Promise<any>} A promise resolving with a boolean indicating if in-memory stats are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with a boolean indicating if in-memory stats are enabled.
    */
   optionInMemoryEnabled = () =>
     this.api.request('/stats/view/optionInMemoryEnabled');
@@ -93,7 +95,7 @@ class Stats {
   /**
    * Checks if a Statsd server has been correctly configured.
    *
-   * @returns {Promise<any>} A promise resolving with a boolean indicating if Statsd is enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with a boolean indicating if Statsd is enabled.
    */
   optionStatsdEnabled = () =>
     this.api.request('/stats/view/optionStatsdEnabled');
@@ -103,7 +105,7 @@ class Stats {
    *
    * @param {{ keyPrefix?: string }} [args={}] - Object containing:
    *   - keyPrefix: (Optional) The key prefix to filter by.
-   * @returns {Promise<any>} A promise resolving when statistics are cleared.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when statistics are cleared.
    */
   clearStats = ({ keyPrefix } = {}) => {
     return this.api.request('/stats/action/clearStats', { keyPrefix });
@@ -114,7 +116,7 @@ class Stats {
    *
    * @param {{ string: string }} args - Object containing:
    *   - string: The hostname (empty string to stop using Statsd).
-   * @returns {Promise<any>} A promise resolving when the hostname is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the hostname is set.
    */
   setOptionStatsdHost = ({ string }) =>
     this.api.request('/stats/action/setOptionStatsdHost', { String: string });
@@ -124,7 +126,7 @@ class Stats {
    *
    * @param {{ string: string }} args - Object containing:
    *   - string: The prefix string.
-   * @returns {Promise<any>} A promise resolving when the prefix is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the prefix is set.
    */
   setOptionStatsdPrefix = ({ string }) =>
     this.api.request('/stats/action/setOptionStatsdPrefix', { String: string });
@@ -134,7 +136,7 @@ class Stats {
    *
    * @param {{ bool: boolean }} args - Object containing:
    *   - bool: True to enable in-memory statistics, false otherwise.
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setOptionInMemoryEnabled = ({ bool }) =>
     this.api.request('/stats/action/setOptionInMemoryEnabled', { Boolean: bool });
@@ -144,7 +146,7 @@ class Stats {
    *
    * @param {{ integer: number }} args - Object containing:
    *   - integer: The port number.
-   * @returns {Promise<any>} A promise resolving when the port is set.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the port is set.
    */
   setOptionStatsdPort = ({ integer }) =>
     this.api.request('/stats/action/setOptionStatsdPort', { Integer: integer });

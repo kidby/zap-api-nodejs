@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Reports {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class Reports {
    * Views available report templates.
    * This component is optional and will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with available templates.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with available templates.
    */
   templates = () =>
     this.api.request('/reports/view/templates');
@@ -39,7 +41,7 @@ class Reports {
    *
    * @param {{ template: string }} args - Object containing:
    *   - template: The template label.
-   * @returns {Promise<any>} A promise resolving with the template details.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the template details.
    */
   templateDetails = ({ template }) =>
     this.api.request('/reports/view/templateDetails', { template });
@@ -76,7 +78,7 @@ class Reports {
    *   - reportFileNamePattern: Report file name pattern.
    *   - reportDir: Directory path for the generated report.
    *   - display: Whether to display the report ("true" or "false").
-   * @returns {Promise<any>} A promise resolving with the report generation result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the report generation result.
    */
   generate = ({
                 title,

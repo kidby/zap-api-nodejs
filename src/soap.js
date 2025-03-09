@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Soap {
   constructor(clientApi) {
     this.api = clientApi;
@@ -30,7 +32,7 @@ class Soap {
    *
    * @param {{ file: string }} args - Object containing:
    *   - file: The file path of the WSDL definition.
-   * @returns {Promise<any>} A promise resolving with the result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the result.
    */
   importFile = ({ file }) =>
     this.api.request('/soap/action/importFile', { file });
@@ -41,7 +43,7 @@ class Soap {
    *
    * @param {{ url: string }} args - Object containing:
    *   - url: The URL locating the WSDL definition.
-   * @returns {Promise<any>} A promise resolving with the result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the result.
    */
   importUrl = ({ url }) =>
     this.api.request('/soap/action/importUrl', { url });

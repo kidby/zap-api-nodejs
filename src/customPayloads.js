@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class CustomPayloads {
   constructor(clientApi) {
     this.api = clientApi;
@@ -28,7 +30,7 @@ class CustomPayloads {
    * Lists all available categories.
    * This component is optional and therefore the API will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with available categories.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with available categories.
    */
   customPayloadsCategories = () =>
     this.api.request('/custompayloads/view/customPayloadsCategories/');
@@ -39,7 +41,7 @@ class CustomPayloads {
    *
    * @param {{ category?: string }} [args={}] - Object containing:
    *   - category: (Optional) The category for which the payloads should be displayed.
-   * @returns {Promise<any>} A promise resolving with the loaded payloads.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the loaded payloads.
    */
   customPayloads = ({ category } = {}) =>
     this.api.request('/custompayloads/view/customPayloads/', { category });
@@ -51,7 +53,7 @@ class CustomPayloads {
    *
    * @param {{ category?: string }} [args={}] - Object containing:
    *   - category: (Optional) The category for which the payloads should be disabled (leave empty for all).
-   * @returns {Promise<any>} A promise resolving when payloads are disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when payloads are disabled.
    */
   disableCustomPayloads = ({ category } = {}) =>
     this.api.request('/custompayloads/action/disableCustomPayloads/', { category });
@@ -63,7 +65,7 @@ class CustomPayloads {
    *
    * @param {{ category?: string }} [args={}] - Object containing:
    *   - category: (Optional) The category for which the payloads should be enabled (leave empty for all).
-   * @returns {Promise<any>} A promise resolving when payloads are enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when payloads are enabled.
    */
   enableCustomPayloads = ({ category } = {}) =>
     this.api.request('/custompayloads/action/enableCustomPayloads/', { category });
@@ -75,7 +77,7 @@ class CustomPayloads {
    * @param {{ category: string, payload?: string }} args - Object containing:
    *   - category: The category of the payload being removed.
    *   - payload: (Optional) The payload being removed.
-   * @returns {Promise<any>} A promise resolving when the payload is removed.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the payload is removed.
    */
   removeCustomPayload = ({ category, payload }) =>
     this.api.request('/custompayloads/action/removeCustomPayload/', { category, payload });
@@ -87,7 +89,7 @@ class CustomPayloads {
    * @param {{ category: string, payload?: string }} args - Object containing:
    *   - category: The category for the new payload.
    *   - payload: (Optional) The payload to be added.
-   * @returns {Promise<any>} A promise resolving when the payload is added.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the payload is added.
    */
   addCustomPayload = ({ category, payload }) =>
     this.api.request('/custompayloads/action/addCustomPayload/', { category, payload });
@@ -99,7 +101,7 @@ class CustomPayloads {
    * @param {{ category: string, payload?: string }} args - Object containing:
    *   - category: The category for the payload being enabled.
    *   - payload: (Optional) The payload being enabled.
-   * @returns {Promise<any>} A promise resolving when the payload is enabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the payload is enabled.
    */
   enableCustomPayload = ({ category, payload }) =>
     this.api.request('/custompayloads/action/enableCustomPayload/', { category, payload });
@@ -111,7 +113,7 @@ class CustomPayloads {
    * @param {{ category: string, payload?: string }} args - Object containing:
    *   - category: The category for the payload being disabled.
    *   - payload: (Optional) The payload being disabled.
-   * @returns {Promise<any>} A promise resolving when the payload is disabled.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the payload is disabled.
    */
   disableCustomPayload = ({ category, payload }) =>
     this.api.request('/custompayloads/action/disableCustomPayload/', { category, payload });

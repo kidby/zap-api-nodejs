@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Reveal {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +29,7 @@ class Reveal {
   /**
    * Retrieves the current reveal setting (i.e. whether hidden fields are shown and disabled fields enabled).
    * This component is optional and will only work if it is installed.
-   * @returns {Promise<any>} A promise resolving with the reveal state.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the reveal state.
    */
   reveal = () => this.api.request('/reveal/view/reveal');
 
@@ -36,7 +38,7 @@ class Reveal {
    * This component is optional and will only work if it is installed.
    * @param {{ reveal: string }} args - Object containing:
    *   - reveal: The reveal setting (e.g. "true" or "false").
-   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving when the setting is applied.
    */
   setReveal = ({ reveal }) =>
     this.api.request('/reveal/action/setReveal', { reveal });

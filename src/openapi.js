@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Openapi {
   /**
    * @param {object} clientApi - The client API instance.
@@ -36,7 +38,7 @@ class Openapi {
    *   - target: (Optional) The target URL to override the server URL in the definition.
    *   - contextId: (Optional) The context ID.
    *   - userId: (Optional) The user ID.
-   * @returns {Promise<any>} A promise resolving with the import result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the import result.
    */
   importFile = ({ file, target, contextId, userId }) => {
     return this.api.request('/openapi/action/importFile', { file, target, contextId, userId });
@@ -51,7 +53,7 @@ class Openapi {
    *   - hostOverride: (Optional) The target URL to override the server URL in the definition.
    *   - contextId: (Optional) The context ID.
    *   - userId: (Optional) The user ID.
-   * @returns {Promise<any>} A promise resolving with the import result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the import result.
    */
   importUrl = ({ url, hostOverride, contextId, userId }) => {
     return this.api.request('/openapi/action/importUrl', { url, hostOverride, contextId, userId });

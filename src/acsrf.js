@@ -19,6 +19,8 @@
 
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Acsrf {
   constructor(clientApi) {
     this.api = clientApi;
@@ -26,20 +28,20 @@ class Acsrf {
 
   /**
    * Lists the names of all anti-CSRF tokens.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   optionTokensNames = () => this.api.request('/acsrf/view/optionTokensNames');
 
   /**
    * Define if ZAP should detect CSRF tokens by searching for partial matches.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   optionPartialMatchingEnabled = () => this.api.request('/acsrf/view/optionPartialMatchingEnabled');
 
   /**
    * Adds an anti-CSRF token with the given name, enabled by default.
    * @param {{ tokenName: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   addOptionToken = ({ tokenName }) =>
     this.api.request('/acsrf/action/addOptionToken', { 'String': `${tokenName}` });
@@ -47,7 +49,7 @@ class Acsrf {
   /**
    * Removes the anti-CSRF token with the given name.
    * @param {{ tokenName: string }} args
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   removeOptionToken = ({ tokenName }) =>
     this.api.request('/acsrf/action/removeOptionToken', { 'String': tokenName });
@@ -55,7 +57,7 @@ class Acsrf {
   /**
    * Define if ZAP should detect CSRF tokens by searching for partial matches.
    * @param {boolean} isSet
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   setOptionPartialMatchingEnabled = isSet =>
     this.api.request('/acsrf/action/setOptionPartialMatchingEnabled', { 'Boolean': `${isSet}` });
@@ -63,7 +65,7 @@ class Acsrf {
   /**
    * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP.
    * @param {{ hrefId: string, actionUrl: string }} args - Defines which request will be used and the action URL.
-   * @returns {Promise}
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>}
    */
   genForm = ({ hrefId, actionUrl }) =>
     this.api.request('/acsrf/other/genForm/', { hrefId, actionUrl });

@@ -18,6 +18,8 @@
  */
 'use strict';
 
+/// <reference path="../index.d.ts" />
+
 class Replacer {
   constructor(clientApi) {
     this.api = clientApi;
@@ -27,7 +29,7 @@ class Replacer {
    * Returns full details of all the rules.
    * This component is optional and will only work if it is installed.
    *
-   * @returns {Promise<any>} A promise resolving with the rules.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the rules.
    */
   rules = () =>
     this.api.request('/replacer/view/rules');
@@ -54,7 +56,7 @@ class Replacer {
    *   - replacement: (Optional) The replacement string.
    *   - initiators: (Optional) A comma-separated list of initiator IDs.
    *   - url: (Optional) A regex to match the URL of the message.
-   * @returns {Promise<any>} A promise resolving with the result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the result.
    */
   addRule = ({ description, enabled, matchType, matchRegex, matchString, replacement, initiators, url }) =>
     this.api.request('/replacer/action/addRule', { description, enabled, matchType, matchRegex, matchString, replacement, initiators, url });
@@ -65,7 +67,7 @@ class Replacer {
    *
    * @param {{ description: string }} args - Object containing:
    *   - description: The rule description.
-   * @returns {Promise<any>} A promise resolving with the result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the result.
    */
   removeRule = ({ description }) =>
     this.api.request('/replacer/action/removeRule', { description });
@@ -77,7 +79,7 @@ class Replacer {
    * @param {{ description: string, bool: string }} args - Object containing:
    *   - description: The rule description.
    *   - bool: "true" or "false" indicating if the rule should be enabled.
-   * @returns {Promise<any>} A promise resolving with the result.
+   * @returns {ZAProxy.ZapApiPromiseResponse<string>} A promise resolving with the result.
    */
   setEnabled = ({ description, bool }) =>
     this.api.request('/replacer/action/setEnabled', { description, bool });
